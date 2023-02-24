@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
 
 const Signup = (props) => {
     return (
         <>
-            <Header />
 
             <div id="signupContainer">
                 <form action="" class="signup-form">
@@ -23,7 +20,7 @@ const Signup = (props) => {
                         </div>
                         <div class="sub-row">
                             <label for="">Password</label>
-                            <input type="password" name="pass" id="" required />
+                            <input type="password" name="pass" id="" placeholder="*******" required />
                         </div>
                     </div>
                     <div class="row">
@@ -52,13 +49,7 @@ const Signup = (props) => {
                             <label for="">Date of birth</label>
                             <input type="date" name="dob" id="" required /></div>
                         <div class="sub-row">
-                            <label for="">Course</label>
-                            <div class="radio">
-                                <input type="radio" name="course" id="" />
-                                <label for="">Java</label>
-                                <input type="radio" name="course" id="" />
-                                <label for="">Python</label>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="row submit">
@@ -67,8 +58,6 @@ const Signup = (props) => {
                     <Link to="/login" class="loginInsted">Login Instead?</Link>
                 </form>
             </div>
-
-            <Footer />
 
         </>
     );

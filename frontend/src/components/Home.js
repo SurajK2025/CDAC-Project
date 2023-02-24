@@ -1,10 +1,7 @@
-import Header from './Header';
-import Footer from './Footer';
 
 const Home = (props) => {
     return (
         <>
-            <Header />
 
             <header>
                 <h2>Your Career In Web Development Starts Here</h2>
@@ -49,7 +46,6 @@ const Home = (props) => {
                 </div>
             </main>
 
-            <Footer />
         </>
     );
 }

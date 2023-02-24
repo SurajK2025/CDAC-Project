@@ -1,12 +1,8 @@
 import { Link } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
 
 const Products = (props) => {
     return (
         <>
-            <Header />
-
             <div class="productSection0">
                 <div class="slider">
                     <div class="slide-viewer">
@@ -143,9 +139,6 @@ const Products = (props) => {
                     </div>
                 </div>
             </div>
-
-            <Footer />
-
         </>
     );
 }

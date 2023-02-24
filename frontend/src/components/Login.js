@@ -1,12 +1,8 @@
 import { Link } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
 
 const Login = (props) => {
     return (
         <>
-            <Header />
-
             <div id="loginContainer">
                 <form action="" class="login-form">
                     <div class="title">
@@ -33,9 +29,6 @@ const Login = (props) => {
                     </div>
                 </form>
             </div>
-
-            <Footer />
-
         </>
     );
 }

@@ -1,10 +1,6 @@
-import Header from './Header';
-import Footer from './Footer';
-
 const About = (props) => {
     return (
         <>
-            <Header/>
 
             <div id="aboutContainer">
                 <h2>About the Company</h2>
@@ -64,9 +60,6 @@ const About = (props) => {
                     </div>
                 </div>
             </div>
-
-            <Footer/>
-            
         </>
     );
 }
