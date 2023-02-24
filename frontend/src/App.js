@@ -4,7 +4,9 @@ import About from './components/About';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Products from "./components/Products";
-import Profile from "./components/Profile";
+import ProfileEditInfo from "./components/ProfileEditInfo";
+import ProfileCourses from "./components/ProfileCourses";
+import ProfileSettings from "./components/ProfileSettings";
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -19,7 +21,9 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/products" element={<Products />} />
-        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/profile" element={<ProfileEditInfo />} />
+        <Route exact path="/profile/courses" element={<ProfileCourses />} />
+        <Route exact path="/profile/settings" element={<ProfileSettings />} />
       </Routes>
       <Footer/>
     </BrowserRouter>

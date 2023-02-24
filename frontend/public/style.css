@@ -900,7 +900,7 @@ button {
   }
 }
 
-/********** Profile Page - Profile **********/
+/********** Profile Page - Profile Sidebar **********/
 
 .profileContainer {
   margin-top: 90px;
@@ -912,11 +912,15 @@ button {
   column-gap: 20px;
 }
 
-.profileSiderbar {
+.profileSidebar {
   width: 15%;
   padding: 15px 25px;
   border-radius: 5px;
   border: solid 4px var(--secondary-colour);
+}
+
+.profileSidebar .active {
+  color: #000;
 }
 
 .profileContainer ol {
@@ -924,21 +928,23 @@ button {
   text-align: left;
 }
 
-.profileSiderbar li {
+.profileSidebar li {
   margin: 5px 0px;
 }
 
-.profileSiderbar li a {
+.profileSidebar li a {
   font-size: 18px;
   font-weight: 550;
   transition-duration: 0.3s;
   transition-delay: 0.1s;
 }
 
-.profileSiderbar a:hover {
+.profileSidebar a:hover {
   color: #000;
   transform: scale(1.05);
 }
+
+/********** Profile Page - Profile Edit Info **********/
 
 .profileMainDiv {
   width: 100%;
@@ -978,15 +984,7 @@ button {
   padding-bottom: 10px;
 }
 
-/********** Profile Page - Courses **********/
-
-.coursesContainer {
-
-}
-
-/********** Profile Page - Settings **********/
-
-/********** Course Page **********/
+/********** Profile Page - Profile Courses **********/
 
 .courseContainer {
   margin: 90px 0px;
@@ -1001,3 +999,5 @@ button {
   display: flex;
   flex-direction: row;
 }
+
+/********** Profile Page - Settings **********/
