@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 const Home = (props) => {
     return (
@@ -7,7 +8,7 @@ const Home = (props) => {
                 <h2>Your Career In Web Development Starts Here</h2>
                 <p>Our full stack curriculum is supported by a passionate open source community.</p>
                 <p>Remove your fresher's tag, join Industrial Training program now.</p>
-                <a href="#" class="button">Let's Get Started</a>
+                <Link to="/products" class="button">Let's Get Started</Link>
             </header>
 
             <main>
