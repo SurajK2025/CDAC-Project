@@ -67,30 +67,6 @@ const Products = (props) => {
                 <div class="productGrid">
                     <div class="product">
                         <div class="image">
-                            <img src="Images/java.jpg" alt=""/>
-                        </div>
-                        <div class="description">
-                            <h3>Java</h3>
-                            <p>By Sir Nishat Kumar</p>
-                            <h2 class="price">$500</h2>
-                            <a href="" class="buy">Buy Now</a>
-                            <a href="" class="add">Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="image">
-                            <img src="Images/python.jpg" alt=""/>
-                        </div>
-                        <div class="description">
-                            <h3>Python</h3>
-                            <p>By Sir Nishat Kumar</p>
-                            <h2 class="price">$500</h2>
-                            <a href="" class="buy">Buy Now</a>
-                            <a href="" class="add">Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="image">
                             <img src="Images/mysql.svg" alt=""/>
                         </div>
                         <div class="description">
@@ -119,18 +95,6 @@ const Products = (props) => {
                         </div>
                         <div class="description">
                             <h3>JS</h3>
-                            <p>By Sir Nishat Kumar</p>
-                            <h2 class="price">$500</h2>
-                            <a href="" class="buy">Buy Now</a>
-                            <a href="" class="add">Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="image">
-                            <img src="Images/testing.jpg" alt=""/>
-                        </div>
-                        <div class="description">
-                            <h3>Testing</h3>
                             <p>By Sir Nishat Kumar</p>
                             <h2 class="price">$500</h2>
                             <a href="" class="buy">Buy Now</a>

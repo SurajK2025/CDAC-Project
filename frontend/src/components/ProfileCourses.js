@@ -11,13 +11,18 @@ const ProfileCourses = (props) => {
                     <li><Link to="/profile/settings" class="links">Settings</Link></li>
                 </ol>
             </div>
-            <div class="coursesMainDiv">
+            <div class="courseContainer">
                 <h3>Enrolled Courses</h3>
                 <div class="courseCardContainer">
                     <div class="courseCard">
-                        <h6>Course Title</h6>
-                        <img src="" alt="" />
-                        <button></button>
+                        <div class="image">
+                            <img src="Images/mysql.svg" alt=""/>
+                        </div>
+                        <div class="description">
+                            <h3>MySQL</h3>
+                            <p>By Sir Nishat Kumar</p>
+                            <a href="" class="buy">Go To Course</a>
+                        </div>
                     </div>
                 </div>
             </div>
