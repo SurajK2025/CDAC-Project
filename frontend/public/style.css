@@ -944,6 +944,18 @@ button {
   transform: scale(1.05);
 }
 
+@media (max-width: 768px) {
+  .profileContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+
+  .profileSidebar {
+    width: 100%;
+  }
+}
+
 /********** Profile Page - Profile Edit Info **********/
 
 .profileMainDiv {
@@ -1001,3 +1013,41 @@ button {
 }
 
 /********** Profile Page - Settings **********/
+
+.settingsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  text-align: left;
+}
+
+.settingsContainer h3  {
+  padding-bottom: 10px; 
+  text-align: center; 
+  font-size: x-large;
+}
+
+.settingsContainer form {
+  padding: 20px 50px;
+  font-size: 18px;
+  border: solid 2px whitesmoke;
+  border-radius: 4px;
+  background-color: var(--footer-colour);
+  box-shadow: 0 0.05rem 0.25rem 0 rgba(0, 0, 0, 0.5);
+}
+
+.settingsContainer form input {
+  outline: none;
+  transition: 0.8s;
+  padding: 1px 15px;
+  height: 40px;
+  width: 100%;
+  border-radius: 4px;
+  background: rgba(179, 170, 170, 0.5);
+}
+
+.settingsContainer td {
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
