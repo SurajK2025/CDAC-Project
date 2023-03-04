@@ -15,14 +15,9 @@ const ProfileCourses = (props) => {
                 <h3>Enrolled Courses</h3>
                 <div class="courseCardContainer">
                     <div class="courseCard">
-                        <div class="image">
-                            <img src="Images/mysql.svg" alt=""/>
-                        </div>
-                        <div class="description">
-                            <h3>MySQL</h3>
-                            <p>By Sir Nishat Kumar</p>
-                            <a href="" class="buy">Go To Course</a>
-                        </div>
+                        <h3>MySQL</h3>
+                        <p>By Sir Nishat Kumar</p>
+                        <Link to="/" class="buy">Go To Course</Link>
                     </div>
                 </div>
             </div>

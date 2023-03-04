@@ -1,45 +1,61 @@
 import { Link } from 'react-router-dom';
+import { useState } from "react";
+import axios from 'axios';
 
 const Signup = (props) => {
+
+    const [apiData, setApiData] = useState({fullname:"",email:"",username:"", password:"", phone:"", dob:"", gender:""});
+    
+    const savedata = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:8080/bitcode/signup', apiData);
+    }
+
+    const handleChange=(event)=>{
+        const {name,value} =event.target
+        setApiData({...apiData,[name]:value})
+
+    }
+
     return (
         <>
 
             <div id="signupContainer">
-                <form action="" class="signup-form">
+                <form method="POST" onSubmit={savedata} class="signup-form">
                     <p>Register Yourself</p>
                     <div class="row">
                         <div class="sub-row" id="wide">
                             <label for="">Full Name</label>
-                            <input type="text" name="fname" placeholder="Alex Grey" required />
+                            <input type="text" name="fullname" onChange={handleChange} placeholder="Alex Grey" required />
                         </div>
                     </div>
                     <div class="row">
                         <div class="sub-row">
                             <label for="">User Name</label>
-                            <input type="text" name="uname" id="" placeholder="4 Letters" required />
+                            <input type="text" name="username" id="" onChange={handleChange} placeholder="4 Letters" required />
                         </div>
                         <div class="sub-row">
                             <label for="">Password</label>
-                            <input type="password" name="pass" id="" placeholder="*******" required />
+                            <input type="password" name="password" id="" onChange={handleChange} placeholder="*******" required />
                         </div>
                     </div>
                     <div class="row">
                         <div class="sub-row" id="wide">
                             <label for="">Email</label>
-                            <input type="email" name="email" placeholder="alex@gmail.com" required />
+                            <input type="email" name="email" onChange={handleChange} placeholder="alex@gmail.com" required />
                         </div>
                     </div>
                     <div class="row">
                         <div class="sub-row">
                             <label for="">Phone</label>
-                            <input type="number" name="" id="" placeholder="+00 000 000 0000" required />
+                            <input type="number" name="phone" id="" onChange={handleChange} placeholder="+00 000 000 0000" required />
                         </div>
                         <div class="sub-row">
                             <label for="">Gender</label>
                             <div class="radio">
-                                <input type="radio" name="gender" id="" />
+                                <input type="radio" name="gender" id="" value="MALE" onChange={handleChange} />
                                 <label for="">Male</label>
-                                <input type="radio" name="gender" id="" />
+                                <input type="radio" name="gender" id="" value="FEMALE" onChange={handleChange} />
                                 <label for="">Female</label>
                             </div>
                         </div>
@@ -47,7 +63,7 @@ const Signup = (props) => {
                     <div class="row">
                         <div class="sub-row">
                             <label for="">Date of birth</label>
-                            <input type="date" name="dob" id="" required /></div>
+                            <input type="date" name="dob" id="" onChange={handleChange} required /></div>
                         <div class="sub-row">
                             
                         </div>
