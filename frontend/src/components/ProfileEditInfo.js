@@ -15,9 +15,20 @@ const ProfileEditInfo = (props) => {
     }
 
     const savedata = (event) => {
-        axios.put(`http://localhost:8080/bitcode/updateProfile/${user.id}`, apiData)
-            .then( () => {alert("Profile updated successfully."); console.log("Profile updated successfully.") } )
-            .catch(error => {alert("Invalid credentials."); console.log("Invalid credentials.") });
+        event.preventDefault();
+        console.log(apiData);
+        axios.put(`http://localhost:8080/bitcode/user/updateProfile/${user.id}`, apiData)
+            .then( () => {
+                alert("Profile updated successfully.");
+                user.fullname = apiData.fullname;
+                user.email = apiData.email;
+                user.phone = apiData.phone;
+                user.dob = apiData.dob;
+                sessionStorage.setItem("user", JSON.stringify(user)); 
+            })
+            .catch(error => {
+                alert("Invalid credentials."); console.log("Invalid credentials.") 
+            });
     }
 
     const loggedInFlag = sessionStorage.getItem("user") != null;
