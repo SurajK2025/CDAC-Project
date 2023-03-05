@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const changeTheme = function () {
     var icon = document.getElementById("moon-icon");
@@ -39,7 +40,17 @@ const hamburgerMenu = () => {
 
 }
 
+let user = JSON.parse(sessionStorage.getItem("user"));
+if (user == null) user = { fullanme: "", email: "", dob: "", phone: "" };
+
 const Header = (props) => {
+
+    const location = useLocation();
+
+    useEffect(() => {
+        console.log('Location changed');
+    }, [location]);
+
     return (
         <nav>
             <div id="nav-container">
@@ -52,7 +63,9 @@ const Header = (props) => {
                         <li><Link to="/about" class="links">About</Link></li>
                         <li><Link to="/products" class="links">Products</Link></li>
                         <li><a href="#contact" class="links">Contact</a></li>
-                        <li><Link to="/signup" class="links">Signup</Link></li>
+                        {sessionStorage.getItem("user") == null ?
+                            <li><Link to="/login" class="links">Login</Link></li> : <Link to="/profile" class="links">{user.username.toUpperCase()}</Link>
+                        }
                         <li><a href="#"><img id="moon-icon" src="Images/moon.svg" alt="dark-mode" height="18px" onClick={changeTheme} /></a></li>
                     </ul>
                 </div>

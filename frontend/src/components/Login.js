@@ -1,27 +1,46 @@
 import { Link } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useEffect, useReducer } from "react";
 import axios from 'axios';
+import { navigate, useNavigate } from "react-router-dom";
 
 const Login = (props) => {
 
-    const [apiData, setApiData] = useState({username:"", password:""});
-    
+    useEffect(() => {
+        if (sessionStorage.getItem("user") != null) {
+            if (window.confirm("A user is already logged in. Do you want to logout?") == false) {
+                navigate("/");
+            }
+            else{
+                sessionStorage.clear();
+            } 
+        }
+    });
+
+    const [apiData, setApiData] = useState({ username: "", password: "" });
+
+    let navigate = useNavigate();
+
     const savedata = (event) => {
         event.preventDefault();
         axios.post('http://localhost:8080/bitcode/signin', apiData)
-        .then(
-            result => {
-                console.log(result.data);
-                localStorage.setItem("username", JSON.stringify(result.data));
-            }
-           
-        )
-        .catch(error => alert("Invalid credentials."));
+            .then(
+                response => {
+                    sessionStorage.setItem("token", "Bearer " + response.data.jwt);
+                    sessionStorage.setItem("user", JSON.stringify(response.data.user));
+
+                    if (response.data.user.role.includes('ROLE_ADMIN')) {
+                        navigate('/Admin');
+                    } else {
+                        navigate("/profile");
+                    }
+                }
+            )
+            .catch(error => alert("Invalid credentials."));
     }
 
-    const handleChange=(event)=>{
-        const {name,value} =event.target
-        setApiData({...apiData,[name]:value})
+    const handleChange = (event) => {
+        const { name, value } = event.target
+        setApiData({ ...apiData, [name]: value })
 
     }
 

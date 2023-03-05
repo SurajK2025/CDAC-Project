@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState } from "react";
 import axios from 'axios';
+import { navigate, useNavigate } from "react-router-dom";
 
 const Signup = (props) => {
 
     const [apiData, setApiData] = useState({fullname:"",email:"",username:"", password:"", phone:"", dob:"", gender:""});
     
     const savedata = (event) => {
-        event.preventDefault();
         axios.post('http://localhost:8080/bitcode/signup', apiData);
     }
 

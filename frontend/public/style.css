@@ -986,8 +986,7 @@ button {
   outline: none;
   transition: 0.8s;
   padding: 1px 15px;
-  height: 40px;
-  width: 100%;
+  height: 38px;
   border-radius: 4px;
   background: rgba(179, 170, 170, 0.5);
 }
@@ -995,6 +994,21 @@ button {
 .profileMainDiv td {
   padding-right: 20px;
   padding-bottom: 10px;
+}
+
+.profileMainDiv #logout {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.notLoggedIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /********** Profile Page - Settings **********/
