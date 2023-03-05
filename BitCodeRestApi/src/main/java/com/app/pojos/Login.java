@@ -5,8 +5,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "logins")
 public class Login {
@@ -18,10 +19,12 @@ public class Login {
 
 	@OneToOne(mappedBy = "login", cascade = CascadeType.ALL, 
 			fetch = FetchType.LAZY, orphanRemoval = true)
+	@JsonIgnore
 	private Admin admin;
 
 	@OneToOne(mappedBy = "login", cascade = CascadeType.ALL, 
 			fetch = FetchType.LAZY, orphanRemoval = true)
+	@JsonIgnore
 	private User user;
 
 	public Login(String username, String password) {
@@ -68,6 +71,6 @@ public class Login {
 
 	@Override
 	public String toString() {
-		return "Login [username=" + username + ", password=" + password + "]";
+		return "Login [username=" + username + "]";
 	}	
 }

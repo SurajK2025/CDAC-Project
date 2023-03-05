@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.AuthRequest;
 import com.app.dtos.AuthResp;
+import com.app.dtos.LoggedInUserDto;
 import com.app.dtos.UserRegisterDto;
 import com.app.jwtUtils.JwtUtils;
+import com.app.pojos.User;
 import com.app.services.UserService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -41,7 +43,8 @@ public class SignInSignUpController {
 				request.getPassword());
 		try {
 			Authentication authenticatedDetails = manager.authenticate(authToken);
-			return ResponseEntity.ok(new AuthResp("Auth successful!", utils.generateJwtToken(authenticatedDetails)));
+			LoggedInUserDto user = userService.getUserByUsername(request.getUsername());
+			return ResponseEntity.ok(new AuthResp("Auth successful!", utils.generateJwtToken(authenticatedDetails), user));
 		} catch (BadCredentialsException e) {
 			System.out.println("err "+e);
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());

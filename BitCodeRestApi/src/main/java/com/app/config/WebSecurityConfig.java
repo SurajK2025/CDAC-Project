@@ -14,10 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.app.filters.JWTRequestFilter;
 
@@ -31,14 +27,14 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().
+		http.csrf().disable().
 		exceptionHandling().
 		authenticationEntryPoint((request, response, ex) -> {
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage());
 		}).
 		and().
 		authorizeRequests()
-		.antMatchers("/admin/**").hasRole("ADMIN")
+		.antMatchers("/*/").permitAll() 
 		.antMatchers("/**", "/auth/**", "/swagger*/**", "/v*/api-docs/**").permitAll() 
 		.antMatchers(HttpMethod.OPTIONS).permitAll().
 		anyRequest().authenticated().

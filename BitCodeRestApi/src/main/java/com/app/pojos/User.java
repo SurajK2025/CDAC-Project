@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "users")
 public class User extends BaseEntity {
 	final static public String role = "ROLE_USER";
@@ -22,7 +24,7 @@ public class User extends BaseEntity {
 	private String fullname;
 	private String email;
 	private double phone;
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	private LocalDate dob;
 	
@@ -32,6 +34,7 @@ public class User extends BaseEntity {
 	
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, 
 			fetch = FetchType.LAZY, orphanRemoval = true)
+	@JsonIgnore
 	private Cart cart;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

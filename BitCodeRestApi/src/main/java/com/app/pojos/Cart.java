@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -13,9 +14,9 @@ import javax.persistence.OneToOne;
 
 @Entity(name="carts")
 public class Cart extends BaseEntity {
-	
-	private double cartTotal;
-	private int noItems;
+
+	private double cartTotal = 0;
+	private int noItems = 0;
 	
 	@OneToOne
 	@JoinColumn(name = "userId", nullable = true)
@@ -27,4 +28,48 @@ public class Cart extends BaseEntity {
 	        joinColumns = { @JoinColumn(name = "cartId") }, 
 	        inverseJoinColumns = {@JoinColumn(name = "courseId")})
 	private List<Course> cartCourses = new ArrayList<>();
+
+	public Cart() {
+		super();
+	}
+
+	public Cart(double cartTotal, int noItems, User user, List<Course> cartCourses) {
+		super();
+		this.cartTotal = cartTotal;
+		this.noItems = noItems;
+		this.user = user;
+		this.cartCourses = cartCourses;
+	}
+
+	public double getCartTotal() {
+		return cartTotal;
+	}
+
+	public void setCartTotal(double cartTotal) {
+		this.cartTotal = cartTotal;
+	}
+
+	public int getNoItems() {
+		return noItems;
+	}
+
+	public void setNoItems(int noItems) {
+		this.noItems = noItems;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Course> getCartCourses() {
+		return cartCourses;
+	}
+
+	public void setCartCourses(List<Course> cartCourses) {
+		this.cartCourses = cartCourses;
+	}
 }

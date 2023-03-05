@@ -12,10 +12,12 @@ import lombok.ToString;
 public class AuthResp {
 	private String message;
 	private String jwt;
+	private Object user;
 
-	public AuthResp(String message, String jwt) {
+	public AuthResp(String message, String jwt, Object user) {
 		super();
 		this.message = message;
 		this.jwt = jwt;
+		this.user = user;
 	}
 }
