@@ -6,7 +6,8 @@ import { navigate, useNavigate } from "react-router-dom";
 const ProfileEditInfo = (props) => {
 
     let user = JSON.parse(sessionStorage.getItem("user"));
-    const [apiData, setApiData] = useState({ fullname: (user.fullname || ""), email: (user.email || ""), phone: (user.phone || ""), dob: (user.dob || "") });
+    if(user==null) {user = {fullname:"", email:"", phone:"", dob:""}}
+    const [apiData, setApiData] = useState({ fullname: user.fullname, email: user.email, phone: user.phone, dob: user.dob });
 
     const handleChange = (event) => {
         const { name, value } = event.target

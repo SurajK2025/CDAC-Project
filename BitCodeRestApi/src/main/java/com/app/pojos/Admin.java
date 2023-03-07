@@ -15,4 +15,43 @@ public class Admin extends BaseEntity {
 	@OneToOne
 	@JoinColumn(name = "username", referencedColumnName = "username")
 	private Login login;
+
+	public Admin(String fullname, String email, Login login) {
+		super();
+		this.fullname = fullname;
+		this.email = email;
+		this.login = login;
+	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
+	}
+
+	public static String getRole() {
+		return role;
+	}
+
+	public Admin() {
+		super();
+	}
 }

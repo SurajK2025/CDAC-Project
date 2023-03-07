@@ -4,12 +4,18 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dtos.AddCourseDto;
 import com.app.pojos.Course;
 import com.app.services.CourseService;
 
@@ -26,10 +32,22 @@ public class CourseController {
 	
 	@Autowired
 	private JavaMailSender sender;
+	
+	@PostMapping("/add")
+	public ResponseEntity<?> addProdcut(@RequestBody AddCourseDto coursedto) {
+		System.out.println(coursedto);
+		return new ResponseEntity<>(courseService.addCourse(coursedto), HttpStatus.OK);
+	}
 
 	@GetMapping
-	public List<Course> getAllUsers() {
-		System.out.println("in get all emps");
-		return courseService.getAllCourses();
-	}	
+	public ResponseEntity<?> getProductList() {
+		List<Course> listCourses = courseService.getAllCourses();
+		return new ResponseEntity<>(listCourses, HttpStatus.OK);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> getProductById(@PathVariable("id") Long id) {
+		Course savedCourse = courseService.getCourseById(id);
+		return new ResponseEntity<>(savedCourse, HttpStatus.OK);
+	}
 }

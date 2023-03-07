@@ -41,7 +41,7 @@ const hamburgerMenu = () => {
 }
 
 let user = JSON.parse(sessionStorage.getItem("user"));
-if (user == null) user = { fullanme: "", email: "", dob: "", phone: "" };
+if (user == null) user = { username:"" };
 
 const Header = (props) => {
 

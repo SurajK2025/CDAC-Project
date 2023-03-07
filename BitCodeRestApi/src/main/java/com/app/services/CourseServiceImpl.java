@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.dtos.AddCourseDto;
 import com.app.pojos.Course;
 import com.app.repositories.CourseRepository;
 
@@ -22,7 +23,23 @@ public class CourseServiceImpl implements CourseService {
 	
 	@Override
 	public List<Course> getAllCourses() {
+		List<Course> listCourses = courseRepo.findAll();
+		return listCourses;
+	}
 
-		return courseRepo.findAll();
+	@Override
+	public Course getCourseById(Long courseId) {
+		if (courseRepo.existsById(courseId)) {
+			Course course = courseRepo.findById(courseId).orElseThrow(() -> new RuntimeException("Course Not Found"));
+			return course;
+		}
+		return null;
+	}
+
+	@Override
+	public Course addCourse(AddCourseDto addCourseDto) {
+		Course newCourse = mapper.map(addCourseDto, Course.class);
+		courseRepo.save(newCourse);
+		return newCourse;
 	}
 }

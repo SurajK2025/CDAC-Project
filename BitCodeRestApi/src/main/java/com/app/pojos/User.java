@@ -30,6 +30,7 @@ public class User extends BaseEntity {
 	
 	@OneToOne
 	@JoinColumn(name = "username", referencedColumnName = "username")
+	@JsonIgnore
 	private Login login;
 	
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, 
@@ -38,6 +39,7 @@ public class User extends BaseEntity {
 	private Cart cart;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	@JoinTable(
 	        name = "User_Course", 
 	        joinColumns = { @JoinColumn(name = "userId") }, 
@@ -46,6 +48,7 @@ public class User extends BaseEntity {
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
 			fetch=FetchType.LAZY, orphanRemoval = true)
+	@JsonIgnore
 	private List<Order> orders = new ArrayList<>();
 
 	public User() {

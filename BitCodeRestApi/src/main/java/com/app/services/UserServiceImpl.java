@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.dtos.LoggedInUserDto;
-import com.app.dtos.UpdateUserProfileDto;
 import com.app.dtos.UserRegisterDto;
 import com.app.dtos.UserRegisterSuccessDto;
+import com.app.pojos.Admin;
 import com.app.pojos.Cart;
 import com.app.pojos.Login;
 import com.app.pojos.User;
+import com.app.repositories.AdminRepository;
 import com.app.repositories.CartRepository;
 import com.app.repositories.LoginRepository;
 import com.app.repositories.UserRepository;
@@ -24,6 +25,9 @@ import com.app.repositories.UserRepository;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private AdminRepository adminRepo;
 
 	@Autowired
 	private LoginRepository loginRepo;
@@ -64,11 +68,20 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public LoggedInUserDto getUserByUsername(String username) {
-		Login login = loginRepo.findById(username).orElseThrow(() -> new RuntimeException("User Not Found"));
-		User user =  userRepo.findByLogin(login).orElseThrow(() -> new RuntimeException("User Not Found"));
-		LoggedInUserDto loggedInUserDto = mapper.map(user, LoggedInUserDto.class);
-		loggedInUserDto.setUsername(username);
-		if(username != "admin") loggedInUserDto.setRole("ROLE_USER");
+		Login login = loginRepo.findByUsername(username).orElseThrow(() -> new RuntimeException("User Not Found"));
+		LoggedInUserDto loggedInUserDto;
+		if(username.equals("admin1") || username.equals("admin2")) {
+			Admin admin = adminRepo.findByLogin(login).orElseThrow(() -> new RuntimeException("User Not Found"));
+			loggedInUserDto = mapper.map(admin, LoggedInUserDto.class);
+			loggedInUserDto.setUsername(username);
+			loggedInUserDto.setRole("ROLE_ADMIN");	
+		}
+		else {
+			User user =  userRepo.findByLogin(login).orElseThrow(() -> new RuntimeException("User Not Found"));
+			loggedInUserDto = mapper.map(user, LoggedInUserDto.class);
+			loggedInUserDto.setUsername(username);
+			loggedInUserDto.setRole("ROLE_USER");
+		}
 		return loggedInUserDto;
 	}
 

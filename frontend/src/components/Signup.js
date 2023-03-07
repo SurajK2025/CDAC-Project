@@ -1,25 +1,31 @@
 import { Link } from 'react-router-dom';
 import { useState } from "react";
 import axios from 'axios';
-import { navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Signup = (props) => {
 
-    const [apiData, setApiData] = useState({fullname:"",email:"",username:"", password:"", phone:"", dob:"", gender:""});
-    
+    const [apiData, setApiData] = useState({ fullname: "", email: "", username: "", password: "", phone: "", dob: "", gender: "" });
+
+    let navigate = useNavigate();
+
     const savedata = (event) => {
-        axios.post('http://localhost:8080/bitcode/signup', apiData);
+        axios.post('http://localhost:8080/bitcode/signup', apiData)
+            .then(() => {
+                alert("User registered successfully, login to continue.");
+                navigate("/login");
+            })
+            .catch((error)=> {console.log(error)});
     }
 
-    const handleChange=(event)=>{
-        const {name,value} =event.target
-        setApiData({...apiData,[name]:value})
+    const handleChange = (event) => {
+        const { name, value } = event.target
+        setApiData({ ...apiData, [name]: value })
 
     }
 
     return (
         <>
-
             <div id="signupContainer">
                 <form method="POST" onSubmit={savedata} class="signup-form">
                     <p>Register Yourself</p>
@@ -65,7 +71,7 @@ const Signup = (props) => {
                             <label for="">Date of birth</label>
                             <input type="date" name="dob" id="" onChange={handleChange} required /></div>
                         <div class="sub-row">
-                            
+
                         </div>
                     </div>
                     <div class="row submit">

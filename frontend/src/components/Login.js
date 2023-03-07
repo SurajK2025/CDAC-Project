@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
-import { navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
 
     useEffect(() => {
         if (sessionStorage.getItem("user") != null) {
-            if (window.confirm("A user is already logged in. Do you want to logout?") == false) {
+            if (window.confirm("A user is already logged in. Do you want to logout?") === false) {
                 navigate("/");
             }
             else{
@@ -29,7 +29,7 @@ const Login = (props) => {
                     sessionStorage.setItem("user", JSON.stringify(response.data.user));
 
                     if (response.data.user.role.includes('ROLE_ADMIN')) {
-                        navigate('/Admin');
+                        navigate('/admin');
                     } else {
                         navigate("/profile");
                     }

@@ -10,6 +10,7 @@ import ProfileSettings from "./components/ProfileSettings";
 import CourseContent from "./components/CourseContent";
 import CourseDetail from "./components/CourseDetail";
 import Logout from "./components/Logout";
+import AdminDashboard from "./components/AdminDashboard";
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -30,6 +31,7 @@ function App() {
         <Route exact path="/coursecontent" element={<CourseContent />} />
         <Route exact path="/coursedetail" element={<CourseDetail />} />
         <Route exact path="/logout" element={<Logout />} />
+        <Route exact path="/admin/dashboard" element={<Logout />} />
       </Routes>
       <Footer/>
     </BrowserRouter>

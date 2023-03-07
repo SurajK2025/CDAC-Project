@@ -1,6 +1,34 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 const Products = (props) => {
+
+    const [apiData, setApiData] = useState([]);
+    useEffect(
+        () => {
+            axios.get('http://localhost:8080/bitcode/courses')
+                .then(response => { setApiData(response.data) });
+        }
+    )
+
+    var courseCards = apiData.map(obj => {
+        return (
+            <div class="product">
+                <div class="image">
+                    <img src={obj.imagePath} alt="" />
+                </div>
+                <div class="description">
+                    <h3>{obj.courseName}</h3>
+                    <p>{obj.author}</p>
+                    <h2 class="price">{obj.price}</h2>
+                    <a href="" class="buy">Buy Now</a>
+                    <a href="" class="add">Add to Cart</a>
+                </div>
+            </div>
+        );
+    });
+
     return (
         <>
             <div class="productSection0">
@@ -65,9 +93,9 @@ const Products = (props) => {
 
             <div class="productSection2">
                 <div class="productGrid">
-                    <div class="product">
+                    {/* <div class="product">
                         <div class="image">
-                            <img src="Images/mysql.svg" alt=""/>
+                            <img src="Images/mysql.svg" alt="" />
                         </div>
                         <div class="description">
                             <h3>MySQL</h3>
@@ -79,7 +107,7 @@ const Products = (props) => {
                     </div>
                     <div class="product">
                         <div class="image">
-                            <img src="Images/html-css.svg" alt=""/>
+                            <img src="Images/html-css.svg" alt="" />
                         </div>
                         <div class="description">
                             <h3>Html & CSS</h3>
@@ -91,7 +119,7 @@ const Products = (props) => {
                     </div>
                     <div class="product">
                         <div class="image">
-                            <img src="Images/js.svg" alt=""/>
+                            <img src="Images/js.svg" alt="" />
                         </div>
                         <div class="description">
                             <h3>JS</h3>
@@ -100,7 +128,8 @@ const Products = (props) => {
                             <a href="" class="buy">Buy Now</a>
                             <a href="" class="add">Add to Cart</a>
                         </div>
-                    </div>
+                    </div> */}
+                    {courseCards}
                 </div>
             </div>
         </>
