@@ -1247,3 +1247,64 @@ button {
   background-color: var(--primary-colour);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
+
+/********** User Cart **********/
+
+.cartSection {
+  width: 100%;
+  margin-top: 90px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartSection .cartContainer {
+  background-color: var(--footer-colour);
+  width: 70%;
+  border-radius: 5px;
+  padding: 10px;
+} 
+
+.cartSection .cartContainer table {
+  width: 100%;
+  padding: 20px 0px;
+}
+
+.cartSection .cartContainer table th {
+  font-size: large;
+}
+
+.cartSection .cartContainer table td {
+  font-size: medium;
+  padding: 5px 0px;
+}
+
+.cartSection .cartContainer hr {
+  margin: 20px 10%;
+}
+
+.cartSection .cartTotal {
+  width: 100%;
+  row-gap: 10px;
+  padding-right: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+}
+
+.cartSection .cartTotal h1{
+  font-size: large;
+}
+
+.cartSection .cartTotal button {
+  outline: none;
+  font-size: medium;
+  padding: 1px 15px;
+  height: 40px;
+  border-radius: 4px;
+  background: rgba(179, 170, 170, 0.5);
+  box-shadow: 0 0.05rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+}
