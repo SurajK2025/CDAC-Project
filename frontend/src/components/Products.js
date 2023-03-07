@@ -5,12 +5,10 @@ import axios from 'axios';
 const Products = (props) => {
 
     const [apiData, setApiData] = useState([]);
-    useEffect(
-        () => {
-            axios.get('http://localhost:8080/bitcode/courses')
-                .then(response => { setApiData(response.data) });
-        }
-    )
+    useEffect(() => {
+        axios.get('http://localhost:8080/bitcode/courses')
+            .then(response => { setApiData(response.data) });
+    }, []);
 
     var courseCards = apiData.map(obj => {
         return (
@@ -93,42 +91,6 @@ const Products = (props) => {
 
             <div class="productSection2">
                 <div class="productGrid">
-                    {/* <div class="product">
-                        <div class="image">
-                            <img src="Images/mysql.svg" alt="" />
-                        </div>
-                        <div class="description">
-                            <h3>MySQL</h3>
-                            <p>By Sir Nishat Kumar</p>
-                            <h2 class="price">$500</h2>
-                            <a href="" class="buy">Buy Now</a>
-                            <a href="" class="add">Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="image">
-                            <img src="Images/html-css.svg" alt="" />
-                        </div>
-                        <div class="description">
-                            <h3>Html & CSS</h3>
-                            <p>By Sir Nishat Kumar</p>
-                            <h2 class="price">$500</h2>
-                            <a href="" class="buy">Buy Now</a>
-                            <a href="" class="add">Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="image">
-                            <img src="Images/js.svg" alt="" />
-                        </div>
-                        <div class="description">
-                            <h3>JS</h3>
-                            <p>By Sir Nishat Kumar</p>
-                            <h2 class="price">$500</h2>
-                            <a href="" class="buy">Buy Now</a>
-                            <a href="" class="add">Add to Cart</a>
-                        </div>
-                    </div> */}
                     {courseCards}
                 </div>
             </div>

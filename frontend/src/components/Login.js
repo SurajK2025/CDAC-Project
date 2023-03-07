@@ -14,7 +14,7 @@ const Login = (props) => {
                 sessionStorage.clear();
             } 
         }
-    });
+    }, []);
 
     const [apiData, setApiData] = useState({ username: "", password: "" });
 
