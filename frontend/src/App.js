@@ -12,6 +12,8 @@ import CourseDetail from "./components/CourseDetail";
 import Logout from "./components/Logout";
 import Cart from "./components/Cart";
 import AdminDashboard from "./components/AdminDashboard";
+import AdminDashboardCourse from "./components/AdminDashboardCourse";
+import AdminDashboardPayments from "./components/AdminDashboardPayments";
 import AddToCourse from "./components/AddToCourse";
 import PaymentsPage from "./components/PaymentsPage";
 
@@ -29,15 +31,17 @@ function App() {
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/profile" element={<ProfileEditInfo />} />
-        <Route exact path="/profile/courses" element={<ProfileCourses />} />
-        <Route exact path="/profile/settings" element={<ProfileSettings />} />
+        <Route exact path="/profileCourses" element={<ProfileCourses />} />
+        <Route exact path="/profileSettings" element={<ProfileSettings />} />
         <Route exact path="/coursecontent" element={<CourseContent />} />
         <Route exact path="/coursedetail" element={<CourseDetail />} />
         <Route exact path="/logout" element={<Logout />} />
-        <Route exact path="/admin/dashboard" element={<AdminDashboard />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/addToCourse" element={<AddToCourse />} />
         <Route exact path="/paymentsPage" element={<PaymentsPage />} />
+        <Route exact path="/adminDashboard" element={<AdminDashboard />} />
+        <Route exact path="/adminDashboardCourse" element={<AdminDashboardCourse />} />
+        <Route exact path="/adminDashboardPayments" element={<AdminDashboardPayments />} />
       </Routes>
       <Footer />
     </BrowserRouter>

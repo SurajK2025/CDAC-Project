@@ -15,7 +15,7 @@ const Products = (props) => {
     const addToCart = () => {
         console.log(cartApi);
         axios.post('http://localhost:8080/bitcode/cart/add', cartApi)
-            .then(alert("Course added to cart successfully."));
+            .then( response =>  alert(response.data));
     }
 
     var courseCards = apiData.map(obj => {

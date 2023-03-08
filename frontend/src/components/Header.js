@@ -44,6 +44,13 @@ let user = JSON.parse(sessionStorage.getItem("user"));
 if (user == null) user = { username:"" };
 
 const Header = (props) => {
+
+    const[location, setLocation] = useState("");
+
+    useEffect(() => {
+        setLocation(window.location.pathname);
+    });
+
     return (
         <nav>
             <div id="nav-container">

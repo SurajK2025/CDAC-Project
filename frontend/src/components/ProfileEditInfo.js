@@ -40,8 +40,8 @@ const ProfileEditInfo = (props) => {
                 <ol>
                     <li><Link to="/" class="links">Home</Link></li>
                     <li><Link to="/profile" class="links active">Profile</Link></li>
-                    <li><Link to="/profile/courses" class="links">My Courses</Link></li>
-                    <li><Link to="/profile/settings" class="links">Settings</Link></li>
+                    <li><Link to="/profileCourses" class="links">My Courses</Link></li>
+                    <li><Link to="/profileSettings" class="links">Settings</Link></li>
                     {loggedInFlag ?
                         <li><Link to="/logout" class="links">Logout</Link></li> : null
                     }
@@ -81,7 +81,7 @@ const ProfileEditInfo = (props) => {
                 <div className='profileMainDiv'>
                     <form className='notLoggedIn'>
                         <h3>You are not logged in.</h3>
-                        <Link to="/login" class="links">Click here to login?</Link>
+                        <Link to="/login" class="links">Click here to login</Link>
                     </form>
                 </div>
             }

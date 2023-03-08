@@ -9,8 +9,11 @@ const ProfileSettings = (props) => {
                 <ol>
                     <li><Link to="/" class="links">Home</Link></li>
                     <li><Link to="/profile" class="links">Profile</Link></li>
-                    <li><Link to="/profile/courses" class="links">My Courses</Link></li>
-                    <li><Link to="/profile/settings" class="links active">Settings</Link></li>
+                    <li><Link to="/profileCourses" class="links">My Courses</Link></li>
+                    <li><Link to="/profileSettings" class="links active">Settings</Link></li>
+                    {loggedInFlag ?
+                        <li><Link to="/logout" class="links">Logout</Link></li> : null
+                    }
                 </ol>
             </div>
             {loggedInFlag ?

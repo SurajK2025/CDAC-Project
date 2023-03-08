@@ -40,7 +40,7 @@ const Cart = (props) => {
                 <hr />
                 <div className='cartTotal'>
                     <h1>Cart Total: {cartTotal}</h1>
-                    <button>Place Order</button>
+                    <Link to="/paymentsPage"><button>Place Order</button></Link>
                 </div>
             </div>
         </div >

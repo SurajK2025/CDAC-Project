@@ -1,16 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
-const loggedInFlag = sessionStorage.getItem("user") == null;
+const AdminDashboardCourse = (props) => {
 
-const ProfileCourses = (props) => {
+    const loggedInFlag = sessionStorage.getItem("user") == null;
+
     return (
-        <div class="profileContainer">
-            <div class="profileSidebar">
+        <div class="adminContainer">
+            <div class="adminSidebar">
                 <ol>
-                    <li><Link to="/" class="links">Home</Link></li>
-                    <li><Link to="/profile" class="links">Profile</Link></li>
-                    <li><Link to="/profileCourses" class="links active">My Courses</Link></li>
-                    <li><Link to="/profileSettings" class="links">Settings</Link></li>
+                    <li><Link to="/adminDashboard" class="links">Pending Approvals</Link></li>
+                    <li><Link to="/adminDashboardCourse" class="links active">Course Stats</Link></li>
+                    <li><Link to="/adminDashboardPayments" class="links">Payments History</Link></li>
                     {loggedInFlag ?
                         <li><Link to="/logout" class="links">Logout</Link></li> : null
                     }
@@ -18,14 +20,14 @@ const ProfileCourses = (props) => {
             </div>
             {loggedInFlag ?
                 <div class="courseContainer">
-                    <h3>Enrolled Courses</h3>
+                    <h3>Courses</h3>
                     <div class="courseCardContainer">
                         <div class="courseCard">
                             <img src="Images/mysql.svg" height='100px' width='100px' />
                             <div className='courseCardInfo'>
                                 <h3>MySQL</h3>
-                                <p>By Sir Nishat Kumar</p>
-                                <Link to="/" class="buy">Go To Course</Link>
+                                <p>Subscribers: 20</p>
+                                <Link to="/addToCourse" class="buy">Add New Chapter</Link>
                             </div>
                         </div>
                     </div>
@@ -40,4 +42,4 @@ const ProfileCourses = (props) => {
         </div >
     );
 }
-export default ProfileCourses;
+export default AdminDashboardCourse;

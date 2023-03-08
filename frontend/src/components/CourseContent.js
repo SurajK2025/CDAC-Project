@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import CourseChapters from './CourseChapters';
 import CourseChapterBody from './CourseChapterBody';
+import MySQLChapters from '../courseContents/MySQL/Chapters'
 
 const CourseContent = (props) => {
     return (
@@ -10,7 +11,7 @@ const CourseContent = (props) => {
                 <h3>MySQL</h3>
             </div>
             <div className='courseContent'>
-                <CourseChapters />
+                <MySQLChapters />
                 <CourseChapterBody />
             </div>
         </div>
