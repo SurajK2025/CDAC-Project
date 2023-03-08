@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dtos.AddCourseDto;
+import com.app.dtos.PlaceOrderDto;
 import com.app.services.OrdersService;
 
 @RestController
@@ -25,7 +25,7 @@ public class OrdersController {
 	private ModelMapper mapper;
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> placeOrder(@RequestBody AddCourseDto coursedto) {
-		return new ResponseEntity<>(courseService.addCourse(coursedto), HttpStatus.OK);
+	public ResponseEntity<?> placeOrder(@RequestBody PlaceOrderDto placeOrderDto) {
+		return new ResponseEntity<>(ordersService.placeOrder(placeOrderDto), HttpStatus.OK);
 	}
 }

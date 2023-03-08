@@ -1,5 +1,7 @@
 package com.app.services;
 
-public interface OrdersService {
+import com.app.dtos.PlaceOrderDto;
 
+public interface OrdersService {
+	String placeOrder(PlaceOrderDto placeOrderDto);
 }
