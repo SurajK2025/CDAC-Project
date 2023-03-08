@@ -1,5 +1,12 @@
 package com.app.services;
 
-public interface CartService {
+import java.util.List;
 
+import com.app.dtos.AddCourseToCartDto;
+import com.app.pojos.Course;
+
+public interface CartService {
+	String addCourseToCart(AddCourseToCartDto courseToCartDto);
+	List<Course> getCourseInCartByUserId(Long userid);
+	Long getCartTotalByUserId(Long userid);
 }

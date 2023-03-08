@@ -34,19 +34,18 @@ public class CourseController {
 	private JavaMailSender sender;
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> addProdcut(@RequestBody AddCourseDto coursedto) {
-		System.out.println(coursedto);
+	public ResponseEntity<?> addCourse(@RequestBody AddCourseDto coursedto) {
 		return new ResponseEntity<>(courseService.addCourse(coursedto), HttpStatus.OK);
 	}
 
 	@GetMapping
-	public ResponseEntity<?> getProductList() {
+	public ResponseEntity<?> getCoursesList() {
 		List<Course> listCourses = courseService.getAllCourses();
 		return new ResponseEntity<>(listCourses, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getProductById(@PathVariable("id") Long id) {
+	public ResponseEntity<?> getCourseById(@PathVariable("id") Long id) {
 		Course savedCourse = courseService.getCourseById(id);
 		return new ResponseEntity<>(savedCourse, HttpStatus.OK);
 	}

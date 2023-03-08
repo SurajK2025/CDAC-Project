@@ -17,6 +17,7 @@ public class Course extends BaseEntity {
 	private String author;
 	private double price;
 	private int duration;
+	
 	public Course(String courseName, String author, double price, int duration, String description, String imagePath,
 			List<User> users, List<Cart> cart, List<Order> order, List<CourseDetails> courseDetails) {
 		super();

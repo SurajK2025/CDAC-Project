@@ -59,6 +59,7 @@ public class UserServiceImpl implements UserService {
 		cartEntity.setUser(userEntity);
 
 		userEntity.setLogin(loginEntity);
+		userEntity.setCart(cartEntity);
 
 		User persistentUser = userRepo.save(userEntity);
 		loginRepo.save(loginEntity);

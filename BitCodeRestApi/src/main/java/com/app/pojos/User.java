@@ -34,7 +34,7 @@ public class User extends BaseEntity {
 	private Login login;
 	
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, 
-			fetch = FetchType.LAZY, orphanRemoval = true)
+			fetch = FetchType.EAGER, orphanRemoval = true)
 	@JsonIgnore
 	private Cart cart;
 	
@@ -46,10 +46,18 @@ public class User extends BaseEntity {
 	        inverseJoinColumns = {@JoinColumn(name = "courseId")})
 	private List<Course> userCourses = new ArrayList<>();
 	
+	public void addCourseToUser(Course course) {
+		this.userCourses.add(course);
+	}
+	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
 			fetch=FetchType.LAZY, orphanRemoval = true)
 	@JsonIgnore
 	private List<Order> orders = new ArrayList<>();
+	
+	public void addOrderToUser(Order order) {
+		this.orders.add(order);
+	}
 
 	public User() {
 		super();
