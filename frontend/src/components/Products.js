@@ -3,12 +3,20 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 
 const Products = (props) => {
-
+    let user = { id: "" };
     const [apiData, setApiData] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:8080/bitcode/courses')
             .then(response => { setApiData(response.data) });
     }, []);
+
+    let cartApi = {cartId:"", courseId:""}
+
+    const addToCart = () => {
+        console.log(cartApi);
+        axios.post('http://localhost:8080/bitcode/cart/add', cartApi)
+            .then(alert("Course added to cart successfully."));
+    }
 
     var courseCards = apiData.map(obj => {
         return (
@@ -20,8 +28,11 @@ const Products = (props) => {
                     <h3>{obj.courseName}</h3>
                     <p>{obj.author}</p>
                     <h2 class="price">{obj.price}</h2>
-                    <a href="" class="buy">Buy Now</a>
-                    <a href="" class="add">Add to Cart</a>
+                    <Link to="/coursedetail" id={obj.id} onClick={() => localStorage.setItem("CourseId", obj.id)} class="buy">View</Link>
+                    <a onClick={() => { user = JSON.parse(sessionStorage.getItem("user"));
+                                        cartApi.cartId = user.id;
+                                        cartApi.courseId = obj.id;
+                                        addToCart(); }} class="add">Add to Cart</a>
                 </div>
             </div>
         );

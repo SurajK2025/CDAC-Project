@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
@@ -44,13 +44,6 @@ let user = JSON.parse(sessionStorage.getItem("user"));
 if (user == null) user = { username:"" };
 
 const Header = (props) => {
-
-    const location = useLocation();
-
-    useEffect(() => {
-        console.log('Location changed');
-    }, [location]);
-
     return (
         <nav>
             <div id="nav-container">
@@ -64,7 +57,9 @@ const Header = (props) => {
                         <li><Link to="/products" class="links">Products</Link></li>
                         <li><a href="#contact" class="links">Contact</a></li>
                         {sessionStorage.getItem("user") == null ?
-                            <li><Link to="/login" class="links">Login</Link></li> : <Link to="/profile" class="links">{user.username.toUpperCase()}</Link>
+                            <li><Link to="/login" class="links">Login</Link></li> : 
+                            <><li><Link to="/cart">Cart</Link></li>
+                            <li><Link to="/profile" class="links">{user.username.toUpperCase()}</Link></li></>
                         }
                         <li><a href="#"><img id="moon-icon" src="Images/moon.svg" alt="dark-mode" height="18px" onClick={changeTheme} /></a></li>
                     </ul>

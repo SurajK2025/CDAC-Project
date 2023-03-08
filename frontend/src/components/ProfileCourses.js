@@ -9,7 +9,7 @@ const ProfileCourses = (props) => {
                 <ol>
                     <li><Link to="/" class="links">Home</Link></li>
                     <li><Link to="/profile" class="links">Profile</Link></li>
-                    <li><Link to="/profile/courses" class="links active">Courses</Link></li>
+                    <li><Link to="/profile/courses" class="links active">My Courses</Link></li>
                     <li><Link to="/profile/settings" class="links">Settings</Link></li>
                 </ol>
             </div>

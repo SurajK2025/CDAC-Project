@@ -12,6 +12,8 @@ import CourseDetail from "./components/CourseDetail";
 import Logout from "./components/Logout";
 import Cart from "./components/Cart";
 import AdminDashboard from "./components/AdminDashboard";
+import AddToCourse from "./components/AddToCourse";
+import PaymentsPage from "./components/PaymentsPage";
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -19,7 +21,7 @@ import Footer from './components/Footer';
 function App() {
   return (
     <BrowserRouter>
-      <Header/>
+      <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/about" element={<About />} />
@@ -34,8 +36,10 @@ function App() {
         <Route exact path="/logout" element={<Logout />} />
         <Route exact path="/admin/dashboard" element={<AdminDashboard />} />
         <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/addToCourse" element={<AddToCourse />} />
+        <Route exact path="/paymentsPage" element={<PaymentsPage />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
   );
 }
