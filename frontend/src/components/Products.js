@@ -45,16 +45,16 @@ const Products = (props) => {
                     <div class="slide-viewer">
                         <div class="slide-group">
                             <div class="slide slide-1">
-                                <img src="Images/slide-1.jpg" alt="slide_01" />
+                                <img src="/Images/slide-1.jpg" alt="slide_01" />
                             </div>
                             <div class="slide slide-2">
-                                <img src="Images/slide-2.jpg" alt="slide_02" />
+                                <img src="/Images/slide-2.jpg" alt="slide_02" />
                             </div>
                             <div class="slide slide-3">
-                                <img src="Images/slide-3.png" alt="slide_03" />
+                                <img src="/Images/slide-3.png" alt="slide_03" />
                             </div>
                             <div class="slide slide-4">
-                                <img src="Images/slide-4.jpg" alt="slide_04" />
+                                <img src="/Images/slide-4.jpg" alt="slide_04" />
                             </div>
                         </div>
                     </div>

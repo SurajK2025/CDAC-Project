@@ -4,38 +4,41 @@ import axios from 'axios';
 import { navigate, useNavigate } from "react-router-dom";
 
 const PaymentsPage = (props) => {
-    
-    let user = JSON.parse(sessionStorage.getItem("user"));
-    if(user==null) {user = {fullname:"", email:"", phone:"", dob:""}}
-    
-    const [cartTotal, setcartTotal] = useState("");
-    const [apiData, setApiData] = useState({ utrno: "" });
+    const [apiData, setApiData] = useState({ utrno: "", amount: "", userid: "" });
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/bitcode/cart/cartTotal/${user.id}`)
-            .then(response => { setcartTotal(response.data) });
+        let user = JSON.parse(sessionStorage.getItem("user"));
+        if (user == null) { user = { fullname: "", email: "", phone: "", dob: "", id:"" } }
 
-        axios.get('http://localhost:8080/bitcode/courses')
-            .then(response => { setApiData(response.data) });
+        axios.get(`http://localhost:8080/bitcode/cart/cartTotal/${user.id}`)
+            .then( response => {
+                setApiData({ ...apiData, ["amount"]: response.data, ["userid"]: user.id })
+            });
     }, []);
 
     const handleChange = (event) => {
-        const { name, value } = event.target
+        const { name, value } = event.target;
         setApiData({ ...apiData, [name]: value })
     }
 
     const orderPlaced = () => {
-        //axios.post
-        alert("Order placed successfully");
+        axios.post('http://localhost:8080/bitcode/orders/placeOrder', apiData)
+            .then(() => {
+                navigate("/profileCourses");
+                alert("Order placed successfully");
+            })
+            .catch((error) => { console.log(error) });
     }
+
+    let navigate = useNavigate();
 
     return (
         <div className='paymentsSection'>
             <div className='paymentsContainer'>
-                <img src='Images/paymentQR.jpg'></img>
-                <h1>Payment Amount: {cartTotal}</h1>
+                <img src='/Images/paymentQR.jpg'></img>
+                <h1>Payment Amount: {apiData.amount}</h1>
                 <input type='number' name='utrno' placeholder='UTR Number' onChange={handleChange} required />
-                <Link to="/"><button onClick={orderPlaced}>Submit</button></Link>
+                <button onClick={orderPlaced}>Submit</button>
             </div>
         </div>
     );
