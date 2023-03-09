@@ -20,6 +20,12 @@ import PaymentsPage from "./components/PaymentsPage";
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+import Chapter1 from './courseContents/MySQL/TypesOfPrimaryKeys';
+import Chapter2 from './courseContents/MySQL/TypesOfMySQLQueries';
+import Chapter3 from './courseContents/MySQL/DatabaseOperations';
+import Chapter4 from './courseContents/MySQL/ManagingTables';
+import Chapter5 from './courseContents/MySQL/MySQLConstraints';
+
 function App() {
   return (
     <BrowserRouter>
@@ -33,7 +39,13 @@ function App() {
         <Route exact path="/profile" element={<ProfileEditInfo />} />
         <Route exact path="/profileCourses" element={<ProfileCourses />} />
         <Route exact path="/profileSettings" element={<ProfileSettings />} />
-        <Route exact path="/coursecontent" element={<CourseContent />} />
+        <Route path="mysqlcourse" element={<CourseContent />}> 
+          <Route path="chapter1" element={<Chapter1 />} />
+          <Route path="chapter2" element={<Chapter2 />} />
+          <Route path="chapter3" element={<Chapter3 />} />
+          <Route path="chapter4" element={<Chapter4 />} />
+          <Route path="chapter5" element={<Chapter5 />} />
+        </Route>
         <Route exact path="/coursedetail" element={<CourseDetail />} />
         <Route exact path="/logout" element={<Logout />} />
         <Route exact path="/cart" element={<Cart />} />

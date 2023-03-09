@@ -15,7 +15,7 @@ const About = (props) => {
 
                 <div class="beliefs">
                     <div class="image">
-                        <img src="Images/belief-image1.svg" alt=""/>
+                        <img src="/Images/belief-image1.svg" alt=""/>
                     </div>
                     <div class="content">
                         <h3>Education should be free and accessible </h3>
@@ -27,7 +27,7 @@ const About = (props) => {
 
                 <div class="beliefs">
                     <div class="image">
-                        <img src="Images/belief-image2.svg" alt=""/>
+                        <img src="/Images/belief-image2.svg" alt=""/>
                     </div>
                     <div class="content">
                         <h3>You learn best by actually building </h3>
@@ -39,7 +39,7 @@ const About = (props) => {
 
                 <div class="beliefs">
                     <div class="image">
-                        <img src="Images/belief-image3.svg" alt=""/>
+                        <img src="/Images/belief-image3.svg" alt=""/>
                     </div>
                     <div class="content">
                         <h3>Motivation is fueled by working with others </h3>
@@ -51,7 +51,7 @@ const About = (props) => {
 
                 <div class="beliefs">
                     <div class="image">
-                        <img src="Images/belief-image4.svg" alt=""/>
+                        <img src="/Images/belief-image4.svg" alt=""/>
                     </div>
                     <div class="content">
                         <h3>Open source is best </h3>

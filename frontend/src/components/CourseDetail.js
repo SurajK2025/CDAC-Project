@@ -26,7 +26,7 @@ const CourseDetail = (props) => {
     return (
         <div className='courseContentPanel'>
             <div className='courseContentHeading'>
-                <img src='Images/mysql.svg' alt='MySQL Course' height='100px' width='100px' />
+                <img src='/Images/mysql.svg' alt='MySQL Course' height='100px' width='100px' />
                 <h3>{apiData.courseName}</h3>
             </div>
             <h4>Course Contents :</h4>

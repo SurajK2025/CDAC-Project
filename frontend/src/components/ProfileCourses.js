@@ -1,8 +1,33 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
-const loggedInFlag = sessionStorage.getItem("user") == null;
+const loggedInFlag = sessionStorage.getItem("user") != null;
 
 const ProfileCourses = (props) => {
+
+    let user = JSON.parse(sessionStorage.getItem("user"));
+    if (user == null) { user = { id: "" } }
+
+    const [apiData, setApiData] = useState([]);
+    useEffect(() => {
+        axios.get(`http://localhost:8080/bitcode/user/userCourses/${user.id}`)
+            .then(response => { setApiData(response.data) });
+    }, []);
+
+    var usersCourses = apiData.map(obj => {
+        return (
+            <div class="courseCard">
+                <img src={obj.imagePath} height='100px' width='100px' />
+                <div className='courseCardInfo'>
+                    <h3>{obj.courseName}</h3>
+                    <p>{obj.author}</p>
+                    <Link to="/" class="buy">Go To Course</Link>
+                </div>
+            </div>
+        );
+    });
+
     return (
         <div class="profileContainer">
             <div class="profileSidebar">
@@ -20,14 +45,7 @@ const ProfileCourses = (props) => {
                 <div class="courseContainer">
                     <h3>Enrolled Courses</h3>
                     <div class="courseCardContainer">
-                        <div class="courseCard">
-                            <img src="Images/mysql.svg" height='100px' width='100px' />
-                            <div className='courseCardInfo'>
-                                <h3>MySQL</h3>
-                                <p>By Sir Nishat Kumar</p>
-                                <Link to="/" class="buy">Go To Course</Link>
-                            </div>
-                        </div>
+                        {usersCourses}
                     </div>
                 </div> :
                 <div className='profileMainDiv'>

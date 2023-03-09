@@ -23,7 +23,7 @@ const AdminDashboardCourse = (props) => {
                     <h3>Courses</h3>
                     <div class="courseCardContainer">
                         <div class="courseCard">
-                            <img src="Images/mysql.svg" height='100px' width='100px' />
+                            <img src="/Images/mysql.svg" height='100px' width='100px' />
                             <div className='courseCardInfo'>
                                 <h3>MySQL</h3>
                                 <p>Subscribers: 20</p>

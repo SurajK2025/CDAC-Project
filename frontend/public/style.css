@@ -413,7 +413,7 @@ footer hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("Images/headerImg.svg");
+  background-image: url("/Images/headerImg.svg");
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -523,7 +523,7 @@ footer hr {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("Images/headerImg.svg");
+  background-image: url("/Images/headerImg.svg");
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -689,7 +689,7 @@ footer hr {
 .productSection0 {
   margin-top: 95px;
   padding-top: 20px;
-  background-image: url(Images/headerImg.svg);
+  background-image: url(/Images/headerImg.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -1123,7 +1123,7 @@ p {
 /********** Course Content Template **********/
 
 .courseContentPanel {
-  margin: 0px 10%;
+  margin: 0px 5%;
   margin-top: 100px;
   margin-bottom: 10px;
   background-color: var(--footer-colour);
@@ -1172,10 +1172,9 @@ p {
 }
 
 .courseChapters {
-  width: 15%;
+  width: 25%;
   padding: 15px 5px;
   border-radius: 5px;
-  border: solid 2px var(--secondary-colour);
 }
 
 .courseChapters .active {
@@ -1373,7 +1372,7 @@ p {
 }
 
 .adminContainer .adminMainDiv {
-	width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
@@ -1466,6 +1465,22 @@ p {
 
 .addToCourse .addToCourseContainer input {
   width: 400px;
+  outline: none;
+  transition: 0.8s;
+  padding: 1px 15px;
+  height: 40px;
+  border-radius: 4px;
+  background: rgba(211, 201, 201, 0.5);
+}
+
+/********** Payments Page **********/
+
+.paymentsContainer button {
+  cursor: pointer;
+  font: 'Open Sans';
+  font-size: medium;
+  font-weight: bolder;
+  width: 150px;
   outline: none;
   transition: 0.8s;
   padding: 1px 15px;

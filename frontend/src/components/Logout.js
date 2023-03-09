@@ -27,8 +27,8 @@ const ProfileEditInfo = (props) => {
                 <ol>
                     <li><Link to="/" class="links">Home</Link></li>
                     <li><Link to="/profile" class="links">Profile</Link></li>
-                    <li><Link to="/profile/courses" class="links">My Courses</Link></li>
-                    <li><Link to="/profile/settings" class="links">Settings</Link></li>
+                    <li><Link to="/profileCourses" class="links">My Courses</Link></li>
+                    <li><Link to="/profileSettings" class="links">Settings</Link></li>
                     {sessionStorage.getItem("user") != null ?
                             <li><Link to="/logout" class="links active">Logout</Link></li> : null
                         }

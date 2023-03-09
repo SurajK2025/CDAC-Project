@@ -10,12 +10,12 @@ const Header = (props) => {
                             and ios mobile phone
                         </p>
                         <div class="app-logo">
-                            <img src="Images/play-store.png" alt="play-store" />
-                            <img src="Images/app-store.png" alt="app-store" />
+                            <img src="/Images/play-store.png" alt="play-store" />
+                            <img src="/Images/app-store.png" alt="app-store" />
                         </div>
                     </div>
                     <div class="footer-col-2">
-                        <img src="Images/logo.png" alt="" />
+                        <img src="/Images/logo.png" alt="" />
                         <p>
                             Lorem, ipsum dolor sit amet consectetur <br />adipisicing elit.
                             Porro, eum?

@@ -8,11 +8,11 @@ const changeTheme = function () {
     document.body.classList.toggle("dark-theme");
 
     if (document.body.classList.contains("dark-theme")) {
-        icon.src = "Images/sun.svg";
+        icon.src = "/Images/sun.svg";
         mob_icon.innerHTML = "Light Mode";
     }
     else {
-        icon.src = "Images/moon.svg";
+        icon.src = "/Images/moon.svg";
         mob_icon.innerHTML = "Dark Mode";
     }
 }
@@ -23,11 +23,11 @@ const changeThemeMobNav = () => {
     document.body.classList.toggle("dark-theme");
 
     if (document.body.classList.contains("dark-theme")) {
-        icon.src = "Images/sun.svg";
+        icon.src = "/Images/sun.svg";
         mob_icon.innerHTML = "Light Mode";
     }
     else {
-        icon.src = "Images/moon.svg";
+        icon.src = "/Images/moon.svg";
         mob_icon.innerHTML = "Dark Mode";
     }
 }
@@ -55,7 +55,7 @@ const Header = (props) => {
         <nav>
             <div id="nav-container">
                 <div class="nav-logo">
-                    <Link to="/"><img src="images/logo.png" alt="logo" /></Link>
+                    <Link to="/"><img src="/Images/logo.png" alt="logo" /></Link>
                     <Link to="/"><p class="title">BitCode Tutorials</p></Link>
                 </div>
                 <div class="nav-links">
@@ -68,7 +68,7 @@ const Header = (props) => {
                             <><li><Link to="/cart">Cart</Link></li>
                             <li><Link to="/profile" class="links">{user.username.toUpperCase()}</Link></li></>
                         }
-                        <li><a href="#"><img id="moon-icon" src="Images/moon.svg" alt="dark-mode" height="18px" onClick={changeTheme} /></a></li>
+                        <li><a href="#"><img id="moon-icon" src="/Images/moon.svg" alt="dark-mode" height="18px" onClick={changeTheme} /></a></li>
                     </ul>
                 </div>
                 <button class="hamburger" onClick={hamburgerMenu}>

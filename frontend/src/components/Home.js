@@ -13,7 +13,7 @@ const Home = (props) => {
 
             <main>
                 <div id="section0">
-                    <img src="Images/headerImg.svg" alt="header" />
+                    <img src="/Images/headerImg.svg" alt="header" />
                 </div>
                 <div id="section1">
                     <div class="section1-heading" id="products">
@@ -24,18 +24,18 @@ const Home = (props) => {
                     </div>
                     <div class="card-view">
                         <div class="card">
-                            <img src="Images/book.svg" alt="Learn" />
+                            <img src="/Images/book.svg" alt="Learn" />
                             <h2>Learn</h2>
                             <p>Learn from a curriculum with the best curated online tutorials, blogs, and courses.</p>
                         </div>
                         <div class="card">
-                            <img src="Images/pc.svg" alt="Build" />
+                            <img src="/Images/pc.svg" alt="Build" />
                             <h2>Build</h2>
                             <p>Build dozens of portfolio-worthy projects along the way, from simple scripts to full programs and
                                 deployed websites.</p>
                         </div>
                         <div class="card">
-                            <img src="Images/connect.svg" alt="Connect" />
+                            <img src="/Images/connect.svg" alt="Connect" />
                             <h2>Connect</h2>
                             <p>You're not alone. Learn and get help from our friendly community of beginner and experienced
                                 developers.</p>
@@ -43,7 +43,7 @@ const Home = (props) => {
                     </div>
                 </div>
                 <div class="productSection01">
-                    <img src="Images/companies.png" alt="" width="80%" />
+                    <img src="/Images/companies.png" alt="" width="80%" />
                 </div>
             </main>
 
