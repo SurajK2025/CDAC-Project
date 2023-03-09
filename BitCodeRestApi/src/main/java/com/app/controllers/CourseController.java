@@ -44,8 +44,8 @@ public class CourseController {
 		return new ResponseEntity<>(listCourses, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<?> getCourseById(@PathVariable("id") Long id) {
+	@GetMapping("/{courseid}")
+	public ResponseEntity<?> getCourseById(@PathVariable("courseid") Long id) {
 		Course savedCourse = courseService.getCourseById(id);
 		return new ResponseEntity<>(savedCourse, HttpStatus.OK);
 	}

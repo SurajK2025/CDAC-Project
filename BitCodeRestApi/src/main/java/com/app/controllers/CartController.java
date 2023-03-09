@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.AddCourseToCartDto;
+import com.app.dtos.CartCourseIdDto;
 import com.app.pojos.Course;
 import com.app.services.CartService;
 
@@ -47,5 +48,10 @@ public class CartController {
 	public ResponseEntity<?> getCartTotalByUserId(@PathVariable("userid") Long userid) {
 		Long cartTotal = cartService.getCartTotalByUserId(userid);
 		return new ResponseEntity<>(cartTotal, HttpStatus.OK);
+	}
+	
+	@PostMapping("/remove")
+	public ResponseEntity<?> dropItemFromCart(@RequestBody CartCourseIdDto cartCourseIdDto){	
+		return new ResponseEntity<>(cartService.dropItemFromCart(cartCourseIdDto), HttpStatus.OK);
 	}
 }

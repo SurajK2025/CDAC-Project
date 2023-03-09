@@ -1,9 +1,18 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = (props) => {
+
+    useEffect(() => {
+        let flag = localStorage.getItem("Refresh");
+        if (flag == "1") {
+            localStorage.setItem("Refresh", "0");
+            window.location.reload();
+        }
+    }, []);
+
     return (
         <>
-
             <header>
                 <h2>Your Career In Web Development Starts Here</h2>
                 <p>Our full stack curriculum is supported by a passionate open source community.</p>
@@ -46,7 +55,6 @@ const Home = (props) => {
                     <img src="/Images/companies.png" alt="" width="80%" />
                 </div>
             </main>
-
         </>
     );
 }

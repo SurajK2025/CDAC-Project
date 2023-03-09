@@ -17,6 +17,25 @@ public class Course extends BaseEntity {
 	private String author;
 	private double price;
 	private int duration;
+	private String description;
+	private String imagePath;
+	
+	@ManyToMany(mappedBy = "userCourses")
+	@JsonIgnore
+	private List<User> users = new ArrayList<>();
+	
+	@ManyToMany(mappedBy = "cartCourses")
+	@JsonIgnore
+	private List<Cart> cart = new ArrayList<>();
+	
+	@ManyToMany(mappedBy = "orderCourses")
+	@JsonIgnore
+	private List<Order> order = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL,
+			fetch=FetchType.LAZY, orphanRemoval = true)
+	@JsonIgnore
+	private List<CourseDetails> courseDetails = new ArrayList<>();
 	
 	public Course(String courseName, String author, double price, int duration, String description, String imagePath,
 			List<User> users, List<Cart> cart, List<Order> order, List<CourseDetails> courseDetails) {
@@ -116,24 +135,4 @@ public class Course extends BaseEntity {
 	public void setCourseDetails(List<CourseDetails> courseDetails) {
 		this.courseDetails = courseDetails;
 	}
-
-	private String description;
-	private String imagePath;
-	
-	@ManyToMany(mappedBy = "userCourses")
-	@JsonIgnore
-	private List<User> users = new ArrayList<>();
-	
-	@ManyToMany(mappedBy = "cartCourses")
-	@JsonIgnore
-	private List<Cart> cart = new ArrayList<>();
-	
-	@ManyToMany(mappedBy = "orderCourses")
-	@JsonIgnore
-	private List<Order> order = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL,
-			fetch=FetchType.LAZY, orphanRemoval = true)
-	@JsonIgnore
-	private List<CourseDetails> courseDetails = new ArrayList<>();
 }

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer, useCallback } from "react";
 import axios from 'axios';
-import { navigate, useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
 
@@ -9,6 +8,9 @@ const Cart = (props) => {
     if (user == null) { user = { id: "" } }
 
     const [apiData, setApiData] = useState([]);
+
+    const [, updateState] = useState();
+
     useEffect(() => {
         axios.get(`http://localhost:8080/bitcode/cart/${user.id}`)
             .then(response => { setApiData(response.data) });
@@ -22,6 +24,13 @@ const Cart = (props) => {
                 <td>{obj.courseName}</td>
                 <td>{obj.author}</td>
                 <td>{obj.price}</td>
+                <td className='deleteCartItem'><img src='/Images/delete.png' onClick={() => {
+                    axios.post('http://localhost:8080/bitcode/cart/remove', { cartId: user.id, courseId: obj.id })
+                        .then(() => {
+                            window.location.reload();
+                        })
+                        .catch(error => alert("Error in removing item from cart"));
+                }} /></td>
             </tr>
         );
     });
@@ -34,6 +43,7 @@ const Cart = (props) => {
                         <th>Course Name</th>
                         <th>Author</th>
                         <th>Price Per Item</th>
+                        <th></th>
                     </tr>
                     {userCart}
                 </table>

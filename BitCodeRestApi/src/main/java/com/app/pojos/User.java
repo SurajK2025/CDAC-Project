@@ -15,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "users")
@@ -38,7 +41,8 @@ public class User extends BaseEntity {
 	@JsonIgnore
 	private Cart cart;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
 	@JoinTable(
 	        name = "User_Course", 
@@ -46,8 +50,8 @@ public class User extends BaseEntity {
 	        inverseJoinColumns = {@JoinColumn(name = "courseId")})
 	private List<Course> userCourses = new ArrayList<>();
 	
-	public void addCourseToUser(Course course) {
-		this.userCourses.add(course);
+	public void addCourseToUser(List<Course> course) {
+		this.userCourses.addAll(course);
 	}
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,

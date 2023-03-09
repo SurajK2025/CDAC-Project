@@ -24,7 +24,7 @@ public class OrdersController {
 	@Autowired
 	private ModelMapper mapper;
 	
-	@PostMapping("/add")
+	@PostMapping("/placeOrder")
 	public ResponseEntity<?> placeOrder(@RequestBody PlaceOrderDto placeOrderDto) {
 		return new ResponseEntity<>(ordersService.placeOrder(placeOrderDto), HttpStatus.OK);
 	}

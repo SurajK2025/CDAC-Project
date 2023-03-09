@@ -18,7 +18,7 @@ const ProfileEditInfo = (props) => {
     let user = JSON.parse(sessionStorage.getItem("user"));
 
     const logoutUser = ()=> {
-        sessionStorage.clear(); navigate("/"); alert("Logged out successfully.");
+        sessionStorage.clear(); navigate("/"); localStorage.setItem("Refresh", "1"); alert("Logged out successfully.");
     }
 
     return (

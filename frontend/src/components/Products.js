@@ -3,19 +3,38 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 
 const Products = (props) => {
-    let user = { id: "" };
+
     const [apiData, setApiData] = useState([]);
+    const [purcahsedCourses, setPurcahsedCourses] = useState([]);
+
+    let user;
+    let myCourseIds = [];
+    let cartApi = { cartId: "", courseId: "" }
+
+    const setMyCourseIds = (value, index, array) => { myCourseIds.push(value.id); }
+
     useEffect(() => {
+
+        user = JSON.parse(sessionStorage.getItem("user"));
+        if (user == null) { user = { fullname: "", email: "", phone: "", dob: "", id: "" } }
+
+
+        axios.get(`http://localhost:8080/bitcode/user/userCourses/${user.id}`)
+            .then(response => {
+                setPurcahsedCourses(response.data)
+            });
+
         axios.get('http://localhost:8080/bitcode/courses')
-            .then(response => { setApiData(response.data) });
+            .then(response => {
+                setApiData(response.data)
+            });
     }, []);
 
-    let cartApi = {cartId:"", courseId:""}
+    purcahsedCourses.forEach(setMyCourseIds);
 
     const addToCart = () => {
-        console.log(cartApi);
         axios.post('http://localhost:8080/bitcode/cart/add', cartApi)
-            .then( response =>  alert(response.data));
+            .then(response => alert(response.data));
     }
 
     var courseCards = apiData.map(obj => {
@@ -29,10 +48,15 @@ const Products = (props) => {
                     <p>{obj.author}</p>
                     <h2 class="price">{obj.price}</h2>
                     <Link to="/coursedetail" id={obj.id} onClick={() => localStorage.setItem("CourseId", obj.id)} class="buy">View</Link>
-                    <a onClick={() => { user = JSON.parse(sessionStorage.getItem("user"));
-                                        cartApi.cartId = user.id;
-                                        cartApi.courseId = obj.id;
-                                        addToCart(); }} class="add">Add to Cart</a>
+                    {myCourseIds.includes(obj.id) ?
+                        <Link to="/coursedetail" className='add'>Go To Course</Link> :
+                        <a onClick={() => {
+                            user = JSON.parse(sessionStorage.getItem("user"));
+                            cartApi.cartId = user.id;
+                            cartApi.courseId = obj.id;
+                            addToCart();
+                        }} class="add">Add to Cart</a>
+                    }
                 </div>
             </div>
         );
@@ -40,28 +64,6 @@ const Products = (props) => {
 
     return (
         <>
-            <div class="productSection0">
-                <div class="slider">
-                    <div class="slide-viewer">
-                        <div class="slide-group">
-                            <div class="slide slide-1">
-                                <img src="/Images/slide-1.jpg" alt="slide_01" />
-                            </div>
-                            <div class="slide slide-2">
-                                <img src="/Images/slide-2.jpg" alt="slide_02" />
-                            </div>
-                            <div class="slide slide-3">
-                                <img src="/Images/slide-3.png" alt="slide_03" />
-                            </div>
-                            <div class="slide slide-4">
-                                <img src="/Images/slide-4.jpg" alt="slide_04" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide-buttons"></div>
-                </div>
-            </div>
-
             <div class="productSection1">
                 <div class="main_container">
                     <div class="vertical_sec">

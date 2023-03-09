@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity(name="carts")
 public class Cart extends BaseEntity {
@@ -22,12 +23,17 @@ public class Cart extends BaseEntity {
 	@JoinColumn(name = "userId", nullable = true)
 	private User user;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(
 	        name = "Cart_Course", 
 	        joinColumns = { @JoinColumn(name = "cartId") }, 
 	        inverseJoinColumns = {@JoinColumn(name = "courseId")})
 	private List<Course> cartCourses = new ArrayList<>();
+	
+	public void removeCourseFromCart(Course course) {
+		this.cartCourses.remove(course);
+	}
 	
 	public boolean addCourseToCart(Course course) {
 		if(!cartCourses.contains(course)) { 
@@ -35,6 +41,12 @@ public class Cart extends BaseEntity {
 			return true;
 		}
 		return false;
+	}
+	
+	public void emptyCartCourses() {
+		this.cartTotal = 0;
+		this.noItems = 0;
+		cartCourses.clear();
 	}
 
 	public Cart() {

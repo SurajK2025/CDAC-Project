@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.UpdateUserProfileDto;
+import com.app.pojos.Course;
 import com.app.pojos.User;
 import com.app.services.UserService;
 
@@ -31,9 +32,6 @@ public class UserController {
 
 	@Autowired
 	private ModelMapper mapper;
-
-	@Autowired
-	private JavaMailSender sender;
 
 	@GetMapping("/allUsers")
 	public List<User> getAllUsers() {
@@ -53,4 +51,9 @@ public class UserController {
 //		User detachedUser = mapper.map(updateUserPassword, User.class);
 //		return new ResponseEntity<>(userService.updateUserPassword(updateUserPassword), HttpStatus.OK);
 //	}
+	
+	@GetMapping("/userCourses/{userId}")
+	public ResponseEntity<?> getUsersCourses(@PathVariable Long userId) {
+		return new ResponseEntity<>(userService.getUsersCourses(userId), HttpStatus.OK);
+	}
 }

@@ -39,7 +39,7 @@ function App() {
         <Route exact path="/profile" element={<ProfileEditInfo />} />
         <Route exact path="/profileCourses" element={<ProfileCourses />} />
         <Route exact path="/profileSettings" element={<ProfileSettings />} />
-        <Route path="mysqlcourse" element={<CourseContent />}> 
+        <Route path="/mysqlcourse" element={<CourseContent />}> 
           <Route path="chapter1" element={<Chapter1 />} />
           <Route path="chapter2" element={<Chapter2 />} />
           <Route path="chapter3" element={<Chapter3 />} />

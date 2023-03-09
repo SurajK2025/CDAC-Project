@@ -40,6 +40,12 @@ public class OrdersServiceImpl implements OrdersService {
 		order.setTransactionDetail(transactionDetail);
 		order.setUser(user);
 		
+		transactionDetail.setOrder(order);
+		
+		user.addCourseToUser(cart.getCartCourses());
+		
+		cart.emptyCartCourses();
+		
 		orderRepo.save(order);
 		transactionsRepo.save(transactionDetail);
 		return "Order Placed Successfully";

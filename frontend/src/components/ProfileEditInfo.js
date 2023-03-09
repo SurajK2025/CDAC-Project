@@ -6,7 +6,7 @@ import { navigate, useNavigate } from "react-router-dom";
 const ProfileEditInfo = (props) => {
 
     let user = JSON.parse(sessionStorage.getItem("user"));
-    if(user==null) {user = {fullname:"", email:"", phone:"", dob:""}}
+    if (user == null) { user = { fullname: "", email: "", phone: "", dob: "" } }
     const [apiData, setApiData] = useState({ fullname: user.fullname, email: user.email, phone: user.phone, dob: user.dob });
 
     const handleChange = (event) => {
@@ -15,20 +15,28 @@ const ProfileEditInfo = (props) => {
 
     }
 
+    useEffect(() => {
+        let flag = localStorage.getItem("Refresh");
+        if (flag == "1") {
+            localStorage.setItem("Refresh", "0");
+            window.location.reload();
+        }
+    }, []);
+
     const savedata = (event) => {
         event.preventDefault();
         console.log(apiData);
         axios.put(`http://localhost:8080/bitcode/user/updateProfile/${user.id}`, apiData)
-            .then( () => {
+            .then(() => {
                 alert("Profile updated successfully.");
                 user.fullname = apiData.fullname;
                 user.email = apiData.email;
                 user.phone = apiData.phone;
                 user.dob = apiData.dob;
-                sessionStorage.setItem("user", JSON.stringify(user)); 
+                sessionStorage.setItem("user", JSON.stringify(user));
             })
             .catch(error => {
-                alert("Invalid credentials."); console.log("Invalid credentials.") 
+                alert("Invalid credentials."); console.log("Invalid credentials.")
             });
     }
 

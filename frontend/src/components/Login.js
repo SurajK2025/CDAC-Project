@@ -27,6 +27,7 @@ const Login = (props) => {
                 response => {
                     sessionStorage.setItem("token", "Bearer " + response.data.jwt);
                     sessionStorage.setItem("user", JSON.stringify(response.data.user));
+                    localStorage.setItem("Refresh", "1");
 
                     if (response.data.user.role.includes('ROLE_ADMIN')) {
                         navigate('/admin');

@@ -13,6 +13,7 @@ import com.app.dtos.UserRegisterDto;
 import com.app.dtos.UserRegisterSuccessDto;
 import com.app.pojos.Admin;
 import com.app.pojos.Cart;
+import com.app.pojos.Course;
 import com.app.pojos.Login;
 import com.app.pojos.User;
 import com.app.repositories.AdminRepository;
@@ -109,5 +110,11 @@ public class UserServiceImpl implements UserService {
 		User updatedUser = userRepo.save(existingUser);
 		System.out.println(updatedUser);
 		return updatedUser;
+	}
+
+	@Override
+	public List<Course> getUsersCourses(Long userId) {
+		User existingUser = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User Not Found"));
+		return existingUser.getUserCourses();
 	}
 }
