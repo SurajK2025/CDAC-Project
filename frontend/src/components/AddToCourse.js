@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import JoditEditor from 'jodit-react';
 import { Link } from 'react-router-dom';
 
@@ -6,6 +6,7 @@ const AddToCourse = (props) => {
 
     const editor = useRef(null);
     const [content, setContent] = useState('');
+    let courseName = "";
 
     const [apiData, setApiData] = useState({ chapterName: "" })
 
@@ -17,11 +18,17 @@ const AddToCourse = (props) => {
 
     const loggedInFlag = sessionStorage.getItem("user") != null;
 
+    useEffect(() => {
+        courseName = localStorage.getItem("CourseName");
+        console.log(courseName);
+    });
+
     return (
         <div className='addToCourse'>
             {loggedInFlag ?
                 <div className='addToCourseContainer'>
-                    <h3>MySQL</h3>
+                    <Link to="/adminDashboard" className="adminDashboardLink">Go To Dashboard</Link>
+                    <h3>{courseName}</h3>
                     <input type="text" name='chapterName' placeholder="New Chapter's name" onChange={handleChange} />
                     <JoditEditor
                         className='joditEditor'

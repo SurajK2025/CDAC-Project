@@ -42,7 +42,7 @@ const Header = (props) => {
                     </div>
                 </div>
                 <hr />
-                <p>Suraj Khokrale</p>
+                <p>Bitcode Tutorials</p>
             </div>
         </footer>
     );

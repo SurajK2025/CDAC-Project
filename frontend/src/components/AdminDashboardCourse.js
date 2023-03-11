@@ -4,7 +4,28 @@ import axios from 'axios';
 
 const AdminDashboardCourse = (props) => {
 
-    const loggedInFlag = sessionStorage.getItem("user") == null;
+    const loggedInFlag = sessionStorage.getItem("user") != null;
+
+    const [courseCount1, setCourseCount1] = useState("");
+    const [courseCount2, setCourseCount2] = useState("");
+    const [courseCount3, setCourseCount3] = useState("");
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/bitcode/courses/userCount/1`)
+            .then(response => {
+                setCourseCount1(response.data)
+            });
+
+        axios.get(`http://localhost:8080/bitcode/courses/userCount/2`)
+            .then(response => {
+                setCourseCount2(response.data)
+            });
+
+        axios.get(`http://localhost:8080/bitcode/courses/userCount/3`)
+            .then(response => {
+                setCourseCount3(response.data)
+            });
+    }, []);
 
     return (
         <div class="adminContainer">
@@ -26,8 +47,24 @@ const AdminDashboardCourse = (props) => {
                             <img src="/Images/mysql.svg" height='100px' width='100px' />
                             <div className='courseCardInfo'>
                                 <h3>MySQL</h3>
-                                <p>Subscribers: 20</p>
-                                <Link to="/addToCourse" class="buy">Add New Chapter</Link>
+                                <p>Subscribers: {courseCount1}</p>
+                                <Link to="/addToCourse" onClick={() => localStorage.setItem("CourseName", "MySQL")} class="buy">Add New Chapter</Link>
+                            </div>
+                        </div>
+                        <div class="courseCard">
+                            <img src="/Images/mysql.svg" height='100px' width='100px' />
+                            <div className='courseCardInfo'>
+                                <h3>HTML CSS</h3>
+                                <p>Subscribers: {courseCount2}</p>
+                                <Link to="/addToCourse" onClick={() => localStorage.setItem("CourseName", "HTML CSS")} courseName="HTML CSS" class="buy">Add New Chapter</Link>
+                            </div>
+                        </div>
+                        <div class="courseCard">
+                            <img src="/Images/mysql.svg" height='100px' width='100px' />
+                            <div className='courseCardInfo'>
+                                <h3>JavaScript</h3>
+                                <p>Subscribers: {courseCount3}</p>
+                                <Link to="/addToCourse" onClick={() => localStorage.setItem("CourseName", "JavaScript")} courseName="JavaScript" class="buy">Add New Chapter</Link>
                             </div>
                         </div>
                     </div>

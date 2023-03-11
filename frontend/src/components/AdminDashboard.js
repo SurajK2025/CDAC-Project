@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const AdminDashboard = (props) => {
 
-    const loggedInFlag = sessionStorage.getItem("user") == null;
+    const loggedInFlag = sessionStorage.getItem("user") != null;
 
     return (
         <div class="adminContainer">
@@ -23,9 +23,10 @@ const AdminDashboard = (props) => {
                     <div className='purchaseApprovals'>
                         <h3>Orders Pending For Approvals</h3>
                         <ul>
+                            <li>No Pending Orders For Approval!</li>
+                            {/* <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li>
                             <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li>
-                            <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li>
-                            <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li>
+                            <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li> */}
                         </ul>
                     </div>
                 </div> :

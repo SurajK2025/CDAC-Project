@@ -30,7 +30,7 @@ const Login = (props) => {
                     localStorage.setItem("Refresh", "1");
 
                     if (response.data.user.role.includes('ROLE_ADMIN')) {
-                        navigate('/admin');
+                        navigate('/adminDashboard');
                     } else {
                         navigate("/profile");
                     }

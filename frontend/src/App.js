@@ -20,11 +20,23 @@ import PaymentsPage from "./components/PaymentsPage";
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import Chapter1 from './courseContents/MySQL/TypesOfPrimaryKeys';
-import Chapter2 from './courseContents/MySQL/TypesOfMySQLQueries';
-import Chapter3 from './courseContents/MySQL/DatabaseOperations';
-import Chapter4 from './courseContents/MySQL/ManagingTables';
-import Chapter5 from './courseContents/MySQL/MySQLConstraints';
+import MySQLChapter1 from './courseContents/MySQL/Types of Primary Keys';
+import MySQLChapter2 from './courseContents/MySQL/Types Of MySQL Queries';
+import MySQLChapter3 from './courseContents/MySQL/DataBase Operations';
+import MySQLChapter4 from './courseContents/MySQL/Managing Tables';
+import MySQLChapter5 from './courseContents/MySQL/MySQL Constraints';
+
+import HtmlCssChapter1 from './courseContents/HTMLCSS/Introduction to HTML5';
+import HtmlCssChapter2 from './courseContents/HTMLCSS/Introduction to HTML5';
+import HtmlCssChapter3 from './courseContents/HTMLCSS/Introduction to HTML5';
+import HtmlCssChapter4 from './courseContents/HTMLCSS/Introduction to HTML5';
+import HtmlCssChapter5 from './courseContents/HTMLCSS/Introduction to HTML5';
+
+import JsChapter1 from './courseContents/JavaScript/JavaScript Introduction';
+import JsChapter2 from './courseContents/JavaScript/JavaScript object basics';
+import JsChapter3 from './courseContents/JavaScript/Object oriented programming';
+import JsChapter4 from './courseContents/JavaScript/Arrays and Strings in JS';
+import JsChapter5 from './courseContents/JavaScript/Working with JSON';
 
 function App() {
   return (
@@ -40,11 +52,25 @@ function App() {
         <Route exact path="/profileCourses" element={<ProfileCourses />} />
         <Route exact path="/profileSettings" element={<ProfileSettings />} />
         <Route path="/mysqlcourse" element={<CourseContent />}> 
-          <Route path="chapter1" element={<Chapter1 />} />
-          <Route path="chapter2" element={<Chapter2 />} />
-          <Route path="chapter3" element={<Chapter3 />} />
-          <Route path="chapter4" element={<Chapter4 />} />
-          <Route path="chapter5" element={<Chapter5 />} />
+          <Route path="chapter1" element={<MySQLChapter1 />} />
+          <Route path="chapter2" element={<MySQLChapter2 />} />
+          <Route path="chapter3" element={<MySQLChapter3 />} />
+          <Route path="chapter4" element={<MySQLChapter4 />} />
+          <Route path="chapter5" element={<MySQLChapter5 />} />
+        </Route>
+        <Route path="/htmlcsscourse" element={<CourseContent />}> 
+          <Route path="chapter1" element={<HtmlCssChapter1 />} />
+          <Route path="chapter2" element={<HtmlCssChapter2 />} />
+          <Route path="chapter3" element={<HtmlCssChapter3 />} />
+          <Route path="chapter4" element={<HtmlCssChapter4 />} />
+          <Route path="chapter5" element={<HtmlCssChapter5 />} />
+        </Route>
+        <Route path="/jscourse" element={<CourseContent />}> 
+          <Route path="chapter1" element={<JsChapter1 />} />
+          <Route path="chapter2" element={<JsChapter2 />} />
+          <Route path="chapter3" element={<JsChapter3 />} />
+          <Route path="chapter4" element={<JsChapter4 />} />
+          <Route path="chapter5" element={<JsChapter5 />} />
         </Route>
         <Route exact path="/coursedetail" element={<CourseDetail />} />
         <Route exact path="/logout" element={<Logout />} />

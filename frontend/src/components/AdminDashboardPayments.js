@@ -4,7 +4,32 @@ import axios from 'axios';
 
 const AdminDashboardPayments = (props) => {
 
-    const loggedInFlag = sessionStorage.getItem("user") == null;
+    const [apiData, setApiData] = useState([]);
+    const loggedInFlag = sessionStorage.getItem("user") != null;
+    let user;
+
+    useEffect(() => {
+
+        user = JSON.parse(sessionStorage.getItem("user"));
+        if (user == null) { user = { fullname: "", email: "", phone: "", dob: "", id: "" } }
+
+
+        axios.get(`http://localhost:8080/bitcode/transaction`)
+            .then(response => {
+                setApiData(response.data)
+            });
+    }, []);
+
+    var transactions = apiData.map(obj => {
+        return (
+            <tr>
+                <td>{obj.fullname}</td>
+                <td>{obj.amount}</td>
+                <td>{obj.date}</td>
+                <td>{obj.utrno}</td>
+            </tr>
+        );
+    });
 
     return (
         <div class="adminContainer">
@@ -22,11 +47,15 @@ const AdminDashboardPayments = (props) => {
                 <div class="adminMainDiv">
                     <div className='purchaseApprovals'>
                         <h3>Orders Pending For Approvals</h3>
-                        <ul>
-                            <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li>
-                            <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li>
-                            <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li>
-                        </ul>
+                        <table>
+                            <tr>
+                                <th>User's Name</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>UtrNo</th>
+                            </tr>
+                            {transactions}
+                        </table>
                     </div>
                 </div> :
                 <div className='profileMainDiv'>

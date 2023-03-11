@@ -16,13 +16,18 @@ const ProfileCourses = (props) => {
     }, []);
 
     var usersCourses = apiData.map(obj => {
+        let goToCourseUrl = "";
+        if(obj.id == "1") {goToCourseUrl = "mysqlcourse/chapter1"}
+        if(obj.id == "2") {goToCourseUrl = "htmlcsscourse/chapter1"}
+        if(obj.id == "3") {goToCourseUrl = "jscourse/chapter1"}
+
         return (
             <div class="courseCard">
                 <img src={obj.imagePath} height='100px' width='100px' />
                 <div className='courseCardInfo'>
                     <h3>{obj.courseName}</h3>
                     <p>{obj.author}</p>
-                    <Link to="/" class="buy">Go To Course</Link>
+                    <a href={goToCourseUrl} className='add' onClick={() => localStorage.setItem("CourseId", obj.id)}>Go To Course</a>
                 </div>
             </div>
         );
