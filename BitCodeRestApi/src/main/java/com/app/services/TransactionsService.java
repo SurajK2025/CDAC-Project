@@ -1,5 +1,9 @@
 package com.app.services;
 
-public interface TransactionsService {
+import java.util.List;
 
+import com.app.dtos.TransactionsDto;
+
+public interface TransactionsService {
+	List<TransactionsDto> getAllTransactions();
 }

@@ -9,4 +9,5 @@ public interface CourseService {
 	List<Course> getAllCourses();
 	Course getCourseById(Long courseId);
 	Course addCourse(AddCourseDto addCourseDto);
+	int getUserCountByCourseId(Long courseId);
 }

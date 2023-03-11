@@ -37,6 +37,10 @@ public class Course extends BaseEntity {
 	@JsonIgnore
 	private List<CourseDetails> courseDetails = new ArrayList<>();
 	
+	public int countOfUsers() {
+		return users.size();
+	}
+	
 	public Course(String courseName, String author, double price, int duration, String description, String imagePath,
 			List<User> users, List<Cart> cart, List<Order> order, List<CourseDetails> courseDetails) {
 		super();

@@ -42,4 +42,10 @@ public class CourseServiceImpl implements CourseService {
 		courseRepo.save(newCourse);
 		return newCourse;
 	}
+
+	@Override
+	public int getUserCountByCourseId(Long courseId) {
+		Course course = courseRepo.findById(courseId).orElseThrow(() -> new RuntimeException("Course Not Found"));
+		return course.countOfUsers();
+	}
 }

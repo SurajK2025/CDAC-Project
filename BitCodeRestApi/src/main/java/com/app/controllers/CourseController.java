@@ -49,4 +49,9 @@ public class CourseController {
 		Course savedCourse = courseService.getCourseById(id);
 		return new ResponseEntity<>(savedCourse, HttpStatus.OK);
 	}
+	
+	@GetMapping("/userCount/{courseid}")
+	public ResponseEntity<?> getUserCountByCourseId(@PathVariable("courseid") Long id) {
+		return new ResponseEntity<>(courseService.getUserCountByCourseId(id), HttpStatus.OK);
+	}
 }
