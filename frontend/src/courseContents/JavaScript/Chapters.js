@@ -9,6 +9,7 @@ const Chapters = () => {
                 <li><Link to="chapter3" class="links">3. DataBase Operations</Link></li>
                 <li><Link to="chapter4" class="links">4. Managing Tables</Link></li>
                 <li><Link to="chapter5" class="links">5. MySQL Constraints</Link></li>
+                <li><Link to="chapter6" class="links">6. Demo JavaScript</Link></li>
             </ol>
         </div>
     );

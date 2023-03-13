@@ -37,6 +37,7 @@ import JsChapter2 from './courseContents/JavaScript/JavaScript object basics';
 import JsChapter3 from './courseContents/JavaScript/Object oriented programming';
 import JsChapter4 from './courseContents/JavaScript/Arrays and Strings in JS';
 import JsChapter5 from './courseContents/JavaScript/Working with JSON';
+import JsChapter6 from './courseContents/JavaScript/Demo JavaScript';
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
           <Route path="chapter3" element={<JsChapter3 />} />
           <Route path="chapter4" element={<JsChapter4 />} />
           <Route path="chapter5" element={<JsChapter5 />} />
+          <Route path="chapter6" element={<JsChapter6 />} />
         </Route>
         <Route exact path="/coursedetail" element={<CourseDetail />} />
         <Route exact path="/logout" element={<Logout />} />
