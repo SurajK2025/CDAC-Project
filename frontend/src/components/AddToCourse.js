@@ -17,15 +17,15 @@ const AddToCourse = (props) => {
     }
 
     const loggedInFlag = sessionStorage.getItem("user") != null;
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     useEffect(() => {
         courseName = localStorage.getItem("CourseName");
-        console.log(courseName);
     });
 
     return (
         <div className='addToCourse'>
-            {loggedInFlag ?
+            {(loggedInFlag && user.role == "ROLE_ADMIN") ?
                 <div className='addToCourseContainer'>
                     <Link to="/adminDashboard" className="adminDashboardLink">Go To Dashboard</Link>
                     <h3>{courseName}</h3>
@@ -39,7 +39,7 @@ const AddToCourse = (props) => {
                     />
                 </div> :
                 <form className='notLoggedIn'>
-                    <h3>You are not logged in.</h3>
+                    <h3>You are not logged in as an Admin.</h3>
                     <Link to="/login" class="links">Click here to login</Link>
                 </form>
             }

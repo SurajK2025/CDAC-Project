@@ -20,24 +20,23 @@ import PaymentsPage from "./components/PaymentsPage";
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import MySQLChapter1 from './courseContents/MySQL/Types of Primary Keys';
-import MySQLChapter2 from './courseContents/MySQL/Types Of MySQL Queries';
-import MySQLChapter3 from './courseContents/MySQL/DataBase Operations';
-import MySQLChapter4 from './courseContents/MySQL/Managing Tables';
-import MySQLChapter5 from './courseContents/MySQL/MySQL Constraints';
+import MySQLChapter1 from './courseContents/MySQL/TypesOfPrimaryKeys';
+import MySQLChapter2 from './courseContents/MySQL/TypesOfMySQLQueries';
+import MySQLChapter3 from './courseContents/MySQL/DataBaseOperations';
+import MySQLChapter4 from './courseContents/MySQL/ManagingTables';
+import MySQLChapter5 from './courseContents/MySQL/MySQLConstraints';
 
 import HtmlCssChapter1 from './courseContents/HTMLCSS/Introduction to HTML5';
-import HtmlCssChapter2 from './courseContents/HTMLCSS/Introduction to HTML5';
-import HtmlCssChapter3 from './courseContents/HTMLCSS/Introduction to HTML5';
-import HtmlCssChapter4 from './courseContents/HTMLCSS/Introduction to HTML5';
-import HtmlCssChapter5 from './courseContents/HTMLCSS/Introduction to HTML5';
+import HtmlCssChapter2 from './courseContents/HTMLCSS/Multimedia and embedding';
+import HtmlCssChapter3 from './courseContents/HTMLCSS/CSS Styling the web';
+import HtmlCssChapter4 from './courseContents/HTMLCSS/Adding vector graphics to the web';
+import HtmlCssChapter5 from './courseContents/HTMLCSS/CSS layouts';
 
 import JsChapter1 from './courseContents/JavaScript/JavaScript Introduction';
 import JsChapter2 from './courseContents/JavaScript/JavaScript object basics';
 import JsChapter3 from './courseContents/JavaScript/Object oriented programming';
 import JsChapter4 from './courseContents/JavaScript/Arrays and Strings in JS';
 import JsChapter5 from './courseContents/JavaScript/Working with JSON';
-import JsChapter6 from './courseContents/JavaScript/Demo JavaScript';
 
 function App() {
   return (
@@ -72,7 +71,6 @@ function App() {
           <Route path="chapter3" element={<JsChapter3 />} />
           <Route path="chapter4" element={<JsChapter4 />} />
           <Route path="chapter5" element={<JsChapter5 />} />
-          <Route path="chapter6" element={<JsChapter6 />} />
         </Route>
         <Route exact path="/coursedetail" element={<CourseDetail />} />
         <Route exact path="/logout" element={<Logout />} />

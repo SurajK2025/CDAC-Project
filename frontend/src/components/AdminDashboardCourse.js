@@ -5,6 +5,7 @@ import axios from 'axios';
 const AdminDashboardCourse = (props) => {
 
     const loggedInFlag = sessionStorage.getItem("user") != null;
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     const [courseCount1, setCourseCount1] = useState("");
     const [courseCount2, setCourseCount2] = useState("");
@@ -39,7 +40,7 @@ const AdminDashboardCourse = (props) => {
                     }
                 </ol>
             </div>
-            {loggedInFlag ?
+            {(loggedInFlag && user.role == "ROLE_ADMIN") ?
                 <div class="courseContainer">
                     <h3>Courses</h3>
                     <div class="courseCardContainer">
@@ -52,7 +53,7 @@ const AdminDashboardCourse = (props) => {
                             </div>
                         </div>
                         <div class="courseCard">
-                            <img src="/Images/mysql.svg" height='100px' width='100px' />
+                            <img src="/Images/html-css.svg" height='100px' width='100px' />
                             <div className='courseCardInfo'>
                                 <h3>HTML CSS</h3>
                                 <p>Subscribers: {courseCount2}</p>
@@ -60,7 +61,7 @@ const AdminDashboardCourse = (props) => {
                             </div>
                         </div>
                         <div class="courseCard">
-                            <img src="/Images/mysql.svg" height='100px' width='100px' />
+                            <img src="\Images\js.svg" height='100px' width='100px' />
                             <div className='courseCardInfo'>
                                 <h3>JavaScript</h3>
                                 <p>Subscribers: {courseCount3}</p>
@@ -71,7 +72,7 @@ const AdminDashboardCourse = (props) => {
                 </div> :
                 <div className='profileMainDiv'>
                     <form className='notLoggedIn'>
-                        <h3>You are not logged in.</h3>
+                        <h3>You are not logged in as an Admin.</h3>
                         <Link to="/login" class="links">Click here to login?</Link>
                     </form>
                 </div>

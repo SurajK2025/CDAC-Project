@@ -5,6 +5,7 @@ import axios from 'axios';
 const AdminDashboard = (props) => {
 
     const loggedInFlag = sessionStorage.getItem("user") != null;
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     return (
         <div class="adminContainer">
@@ -13,12 +14,12 @@ const AdminDashboard = (props) => {
                     <li><Link to="/adminDashboard" class="links active">Pending Approvals</Link></li>
                     <li><Link to="/adminDashboardCourse" class="links">Course Stats</Link></li>
                     <li><Link to="/adminDashboardPayments" class="links">Payments History</Link></li>
-                    {loggedInFlag ?
+                    {(loggedInFlag) ?
                         <li><Link to="/logout" class="links">Logout</Link></li> : null
                     }
                 </ol>
             </div>
-            {loggedInFlag ?
+            {(loggedInFlag && user.role == "ROLE_ADMIN") ?
                 <div class="adminMainDiv">
                     <div className='purchaseApprovals'>
                         <h3>Orders Pending For Approvals</h3>
@@ -32,7 +33,7 @@ const AdminDashboard = (props) => {
                 </div> :
                 <div className='profileMainDiv'>
                     <form className='notLoggedIn'>
-                        <h3>You are not logged in.</h3>
+                        <h3>You are not logged in as an Admin.</h3>
                         <Link to="/login" class="links">Click here to login</Link>
                     </form>
                 </div>

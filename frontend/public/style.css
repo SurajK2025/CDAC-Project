@@ -927,6 +927,13 @@ p {
   border: solid 4px var(--secondary-colour);
 }
 
+.profileContainer .adminSidebar {
+  width: 20%;
+  padding: 15px 25px;
+  border-radius: 5px;
+  border: solid 4px var(--secondary-colour);
+}
+
 .profileSidebar .active {
   color: #000;
 }

@@ -40,11 +40,12 @@ const hamburgerMenu = () => {
 
 }
 
-let user = JSON.parse(sessionStorage.getItem("user"));
-if (user == null) user = { username:"" };
+
+
 
 const Header = (props) => {
-
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (user == null) user = { username:"" };
     const[location, setLocation] = useState("");
 
     useEffect(() => {
@@ -63,10 +64,15 @@ const Header = (props) => {
                         <li><Link to="/about" class="links">About</Link></li>
                         <li><Link to="/products" class="links">Products</Link></li>
                         <li><a href="#contact" class="links">Contact</a></li>
-                        {sessionStorage.getItem("user") == null ?
+                        {user == null ?
                             <li><Link to="/login" class="links">Login</Link></li> : 
-                            <><li><Link to="/cart">Cart</Link></li>
-                            <li><Link to="/profile" class="links">{user.username.toUpperCase()}</Link></li></>
+                            <>
+                                <li><Link to="/cart">Cart</Link></li>
+                                {(user.role == "ROLE_USER")?
+                                    <li><Link to="/profile" class="links">{user.username.toUpperCase()}</Link></li> :
+                                    <li><Link to="/adminDashboard" class="links">{user.username.toUpperCase()}</Link></li>
+                                }
+                            </>
                         }
                         <li><a href="#"><img id="moon-icon" src="/Images/moon.svg" alt="dark-mode" height="18px" onClick={changeTheme} /></a></li>
                     </ul>

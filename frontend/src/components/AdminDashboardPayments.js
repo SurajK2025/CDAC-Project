@@ -6,13 +6,10 @@ const AdminDashboardPayments = (props) => {
 
     const [apiData, setApiData] = useState([]);
     const loggedInFlag = sessionStorage.getItem("user") != null;
-    let user;
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     useEffect(() => {
-
-        user = JSON.parse(sessionStorage.getItem("user"));
         if (user == null) { user = { fullname: "", email: "", phone: "", dob: "", id: "" } }
-
 
         axios.get(`http://localhost:8080/bitcode/transaction`)
             .then(response => {
@@ -38,12 +35,12 @@ const AdminDashboardPayments = (props) => {
                     <li><Link to="/adminDashboard" class="links">Pending Approvals</Link></li>
                     <li><Link to="/adminDashboardCourse" class="links">Course Stats</Link></li>
                     <li><Link to="/adminDashboardPayments" class="links active">Payments History</Link></li>
-                    {loggedInFlag ?
+                    {(loggedInFlag) ?
                         <li><Link to="/logout" class="links">Logout</Link></li> : null
                     }
                 </ol>
             </div>
-            {loggedInFlag ?
+            {(loggedInFlag && user.role == "ROLE_ADMIN") ?
                 <div class="adminMainDiv">
                     <div className='purchaseApprovals'>
                         <h3>Orders Pending For Approvals</h3>
@@ -60,7 +57,7 @@ const AdminDashboardPayments = (props) => {
                 </div> :
                 <div className='profileMainDiv'>
                     <form className='notLoggedIn'>
-                        <h3>You are not logged in.</h3>
+                        <h3>You are not logged in as an Admin.</h3>
                         <Link to="/login" class="links">Click here to login</Link>
                     </form>
                 </div>
