@@ -7,6 +7,47 @@ const AdminDashboard = (props) => {
     const loggedInFlag = sessionStorage.getItem("user") != null;
     const user = JSON.parse(sessionStorage.getItem("user"));
 
+    const [orderedCourses, setOrderedCourses] = useState([]);
+    const [currentRow, setCurrentRow] = useState([]);
+
+    useEffect(() => {
+        let flag = localStorage.getItem("Refresh");
+        if (flag == "1") {
+            localStorage.setItem("Refresh", "0");
+            window.location.reload();
+        }
+
+        axios.get(`http://localhost:8080/bitcode/orders/getAllOrders`)
+            .then(response => {
+                setOrderedCourses(response.data);
+            });
+    }, [currentRow]);
+
+    var orders = orderedCourses.map(obj => {
+        
+        return (
+            <tr>
+                <td>{obj.date}</td>
+                <td>{obj.amount}</td>
+                <td>{obj.orderStatus}</td>
+                <td>
+                    {obj.orderStatus=="PENDING"?
+                        <button className='approveBtn' onClick={() => {
+                        axios.get(`http://localhost:8080/bitcode/orders/approveOrder/${obj.id}`)
+                            .then(response => {
+                                setCurrentRow(obj);
+                                alert("Order status changed successfully.");
+                                //setCurrentRow({ ...currentRow, ["orderStatus"]: "APPROVED" });
+                                //window.location.reload();
+                            });
+                        }}>Approve Order</button>:
+                        <button className='disabledApproveBtn'>Approve Order</button>
+                    }
+                </td>
+            </tr>
+        );
+    });
+
     return (
         <div class="adminContainer">
             <div class="adminSidebar">
@@ -23,12 +64,15 @@ const AdminDashboard = (props) => {
                 <div class="adminMainDiv">
                     <div className='purchaseApprovals'>
                         <h3>Orders Pending For Approvals</h3>
-                        <ul>
-                            <li>No Pending Orders For Approval!</li>
-                            {/* <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li>
-                            <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li>
-                            <li><pre>Username : UTR No  <button onClick={() => { }}>Approve</button>  <button onClick={() => { }}>Reject</button></pre></li> */}
-                        </ul>
+                            <table>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Change Order Status</th>
+                                </tr>
+                                {orders}
+                            </table>
                     </div>
                 </div> :
                 <div className='profileMainDiv'>

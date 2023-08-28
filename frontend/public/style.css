@@ -1458,6 +1458,10 @@ p {
   font-size: medium;
 }
 
+.purchaseApprovals table td, .purchaseApprovals table th {
+  text-align: center;
+}
+
 /********** Add To Course **********/
 
 .addToCourse {
@@ -1512,4 +1516,33 @@ p {
   height: 40px;
   border-radius: 4px;
   background: rgba(211, 201, 201, 0.5);
+}
+
+.approveBtn {
+  margin-top: 5px;
+  cursor: pointer;
+  font: 'Open Sans';
+  font-size: medium;
+  font-weight: bolder;
+  outline: none;
+  transition: 0.8s;
+  padding: 2px 4px;
+  box-shadow: 0 0.05rem 0.25rem 0 rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--button-colour);
+  border-radius: 4px;
+  background: var(--button-colour);
+}
+
+.disabledApproveBtn {
+  margin-top: 5px;
+  font: 'Open Sans';
+  font-size: medium;
+  font-weight: bolder;
+  outline: none;
+  transition: 0.8s;
+  padding: 2px 4px;
+  box-shadow: 0 0.05rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  background: rgba(211, 201, 201, 0.5);
+  cursor: not-allowed;
 }

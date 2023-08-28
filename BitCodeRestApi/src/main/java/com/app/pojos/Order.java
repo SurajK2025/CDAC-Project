@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -15,6 +17,8 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "Orders")
 public class Order extends BaseEntity {
 
@@ -23,11 +27,16 @@ public class Order extends BaseEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
+	@JsonIgnore
 	private User user;
 	
 	private double amount;
 	
+	@Enumerated(EnumType.STRING)
+	private OrderStatus orderStatus;
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	@JoinTable(
 	        name = "Order_Course", 
 	        joinColumns = { @JoinColumn(name = "orderId") }, 
@@ -40,7 +49,16 @@ public class Order extends BaseEntity {
 	
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL, 
 			fetch = FetchType.LAZY, orphanRemoval = true)
+	@JsonIgnore
 	private TransactionDetail transactionDetail;
+	
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 
 	public LocalDate getDate() {
 		return date;
@@ -82,7 +100,7 @@ public class Order extends BaseEntity {
 		this.transactionDetail = transactionDetail;
 	}
 
-	public Order(LocalDate date, User user, double amount, List<Course> orderCourses,
+	public Order(LocalDate date, User user, double amount, OrderStatus orderStatus, List<Course> orderCourses,
 			TransactionDetail transactionDetail) {
 		super();
 		this.date = date;
@@ -90,6 +108,7 @@ public class Order extends BaseEntity {
 		this.amount = amount;
 		this.orderCourses = orderCourses;
 		this.transactionDetail = transactionDetail;
+		this.orderStatus = orderStatus;
 	}
 
 	public Order() {

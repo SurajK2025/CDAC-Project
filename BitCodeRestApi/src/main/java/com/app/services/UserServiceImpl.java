@@ -1,5 +1,6 @@
 package com.app.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -9,16 +10,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.dtos.LoggedInUserDto;
+import com.app.dtos.UserCoursesDto;
 import com.app.dtos.UserRegisterDto;
 import com.app.dtos.UserRegisterSuccessDto;
 import com.app.pojos.Admin;
 import com.app.pojos.Cart;
 import com.app.pojos.Course;
 import com.app.pojos.Login;
+import com.app.pojos.Order;
 import com.app.pojos.User;
 import com.app.repositories.AdminRepository;
 import com.app.repositories.CartRepository;
 import com.app.repositories.LoginRepository;
+import com.app.repositories.OrderRepository;
 import com.app.repositories.UserRepository;
 
 @Service
@@ -41,6 +45,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private PasswordEncoder encoder;
+	
+	@Autowired
+	private OrderRepository orderRepo;
 
 	@Override
 	public List<User> getAllUsers() {
@@ -113,8 +120,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Course> getUsersCourses(Long userId) {
+	public List<UserCoursesDto> getUsersCourses(Long userId) {
 		User existingUser = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User Not Found"));
-		return existingUser.getUserCourses();
+		List<Course> courseList = existingUser.getUserCourses();
+		List<UserCoursesDto> userCoursesList = new ArrayList<UserCoursesDto>();
+		
+		for(Course c : courseList) {
+			UserCoursesDto userCourse = mapper.map(c, UserCoursesDto.class);
+			Order order = orderRepo.findByIdAndUser(c.getId(), existingUser).orElseThrow(() -> new RuntimeException("Order Not Found"));
+			userCourse.setOrderStatus(order.getOrderStatus());
+			userCoursesList.add(userCourse);
+		}
+		return userCoursesList;
 	}
 }

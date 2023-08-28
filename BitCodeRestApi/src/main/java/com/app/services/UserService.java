@@ -3,9 +3,9 @@ package com.app.services;
 import java.util.List;
 
 import com.app.dtos.LoggedInUserDto;
+import com.app.dtos.UserCoursesDto;
 import com.app.dtos.UserRegisterDto;
 import com.app.dtos.UserRegisterSuccessDto;
-import com.app.pojos.Course;
 import com.app.pojos.User;
 
 public interface UserService {
@@ -19,5 +19,5 @@ public interface UserService {
 	
 	User updateUserProfile(User updateUserProfile);
 	
-	List<Course> getUsersCourses(Long userId);
+	List<UserCoursesDto> getUsersCourses(Long userId);
 }

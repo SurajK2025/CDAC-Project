@@ -27,7 +27,10 @@ const ProfileCourses = (props) => {
                 <div className='courseCardInfo'>
                     <h3>{obj.courseName}</h3>
                     <p>{obj.author}</p>
-                    <a href={goToCourseUrl} className='add' onClick={() => localStorage.setItem("CourseId", obj.id)}>Go To Course</a>
+                    {obj.orderStatus=="PENDING"?
+                        <a className='add' >Pending For Approval</a>:
+                        <a href={goToCourseUrl} className='add' onClick={() => localStorage.setItem("CourseId", obj.id)}>Go To Course</a>
+                    }
                 </div>
             </div>
         );

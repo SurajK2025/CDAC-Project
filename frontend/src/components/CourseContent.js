@@ -18,7 +18,7 @@ const CourseContent = (props) => {
         return (
             <div className='courseContentPanel'>
                 <div className='courseContentHeading'>
-                    <img src={apiData.imagePath} alt='Course Image' height='100px' width='100px' />
+                    <img src="/Images/mysql.svg" alt='Course Image' height='100px' width='100px' />
                     <h3>{apiData.courseName}</h3>
                 </div>
                 <div className='courseContent'>
@@ -32,7 +32,7 @@ const CourseContent = (props) => {
         return (
             <div className='courseContentPanel'>
                 <div className='courseContentHeading'>
-                    <img src={apiData.imagePath} alt='Course Image' height='100px' width='100px' />
+                    <img src="/Images/html-css.svg" alt='Course Image' height='100px' width='100px' />
                     <h3>{apiData.courseName}</h3>
                 </div>
                 <div className='courseContent'>
@@ -46,7 +46,7 @@ const CourseContent = (props) => {
         return (
             <div className='courseContentPanel'>
                 <div className='courseContentHeading'>
-                    <img src={apiData.imagePath} alt='Course Image' height='100px' width='100px' />
+                    <img src="/Images/js.svg" alt='Course Image' height='100px' width='100px' />
                     <h3>{apiData.courseName}</h3>
                 </div>
                 <div className='courseContent'>

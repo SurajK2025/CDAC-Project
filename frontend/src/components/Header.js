@@ -45,7 +45,7 @@ const hamburgerMenu = () => {
 
 const Header = (props) => {
     const user = JSON.parse(sessionStorage.getItem("user"));
-    if (user == null) user = { username:"" };
+    //if (user == null) user = { username:"" };
     const[location, setLocation] = useState("");
 
     useEffect(() => {
@@ -67,7 +67,7 @@ const Header = (props) => {
                         {user == null ?
                             <li><Link to="/login" class="links">Login</Link></li> : 
                             <>
-                                <li><Link to="/cart">Cart</Link></li>
+                                <li><Link to="/cart" class="links">Cart</Link></li>
                                 {(user.role == "ROLE_USER")?
                                     <li><Link to="/profile" class="links">{user.username.toUpperCase()}</Link></li> :
                                     <li><Link to="/adminDashboard" class="links">{user.username.toUpperCase()}</Link></li>

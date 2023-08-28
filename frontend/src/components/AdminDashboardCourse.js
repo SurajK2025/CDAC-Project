@@ -61,7 +61,7 @@ const AdminDashboardCourse = (props) => {
                             </div>
                         </div>
                         <div class="courseCard">
-                            <img src="\Images\js.svg" height='100px' width='100px' />
+                            <img src="/Images/js.svg" height='100px' width='100px' />
                             <div className='courseCardInfo'>
                                 <h3>JavaScript</h3>
                                 <p>Subscribers: {courseCount3}</p>

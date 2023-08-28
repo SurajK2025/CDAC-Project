@@ -1,5 +1,7 @@
 package com.app.services;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.dtos.PlaceOrderDto;
 import com.app.pojos.Cart;
+import com.app.pojos.Course;
 import com.app.pojos.Order;
+import com.app.pojos.OrderStatus;
 import com.app.pojos.TransactionDetail;
 import com.app.pojos.User;
 import com.app.repositories.OrderRepository;
@@ -36,6 +40,7 @@ public class OrdersServiceImpl implements OrdersService {
 		Order order = mapper.map(placeOrderDto, Order.class);
 		TransactionDetail transactionDetail = mapper.map(placeOrderDto, TransactionDetail.class);
 		
+		order.setOrderStatus(OrderStatus.PENDING);
 		order.addCartCourseToOrder(cart.getCartCourses());
 		order.setTransactionDetail(transactionDetail);
 		order.setUser(user);
@@ -49,5 +54,24 @@ public class OrdersServiceImpl implements OrdersService {
 		orderRepo.save(order);
 		transactionsRepo.save(transactionDetail);
 		return "Order Placed Successfully";
+	}
+
+	@Override
+	public String updateOrderStatus(Long orderid) {
+		Order order = orderRepo.findById(orderid).orElseThrow(() -> new RuntimeException("Order not found"));
+		order.setOrderStatus(OrderStatus.APPROVED);
+		return "Order Status Updated Successfully";
+	}
+
+	@Override
+	public List<Order> getAllPendingOrders() {
+		List<Order> listPendingOrders = orderRepo.findAllByOrderStatus(OrderStatus.PENDING);
+		return listPendingOrders;
+	}
+
+	@Override
+	public List<Order> getAllOrders() {
+		List<Order> listOrders = orderRepo.findAll();
+		return listOrders;
 	}
 }

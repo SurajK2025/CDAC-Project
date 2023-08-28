@@ -40,11 +40,11 @@ const ProfileEditInfo = (props) => {
             </div> :
             <div class="adminSidebar">
                 <ol>
-                <li><Link to="/adminDashboard" class="links active">Pending Approvals</Link></li>
+                <li><Link to="/adminDashboard" class="links">Pending Approvals</Link></li>
                     <li><Link to="/adminDashboardCourse" class="links">Course Stats</Link></li>
                     <li><Link to="/adminDashboardPayments" class="links">Payments History</Link></li>
                     {(loggedInFlag) ?
-                        <li><Link to="/logout" class="links">Logout</Link></li> : null
+                        <li><Link to="/logout" class="links active">Logout</Link></li> : null
                     }
                 </ol>
             </div>
