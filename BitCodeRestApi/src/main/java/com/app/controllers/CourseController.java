@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.AddCourseDto;
+import com.app.dtos.UserCoursesDto;
 import com.app.pojos.Course;
 import com.app.services.CourseService;
 
@@ -37,10 +38,16 @@ public class CourseController {
 	public ResponseEntity<?> addCourse(@RequestBody AddCourseDto coursedto) {
 		return new ResponseEntity<>(courseService.addCourse(coursedto), HttpStatus.OK);
 	}
-
-	@GetMapping
+	
+	@GetMapping("courselist")
 	public ResponseEntity<?> getCoursesList() {
-		List<Course> listCourses = courseService.getAllCourses();
+		List<UserCoursesDto> listCourses = courseService.getAllCourses();
+		return new ResponseEntity<>(listCourses, HttpStatus.OK);
+	}
+
+	@GetMapping("courselist/{userid}")
+	public ResponseEntity<?> getCoursesList(@PathVariable("userid") Long id) {
+		List<UserCoursesDto> listCourses = courseService.getAllCourses(id);
 		return new ResponseEntity<>(listCourses, HttpStatus.OK);
 	}
 	

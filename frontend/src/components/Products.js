@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
+const loggedInFlag = sessionStorage.getItem("user") != null;
+
 const Products = (props) => {
 
     const [apiData, setApiData] = useState([]);
@@ -19,14 +21,13 @@ const Products = (props) => {
 
         user = JSON.parse(sessionStorage.getItem("user"));
         if (user == null) { user = { fullname: "", email: "", phone: "", dob: "", id: "" } }
-
-
+        
         axios.get(`http://localhost:8080/bitcode/user/userCourses/${user.id}`)
             .then(response => {
                 setPurcahsedCourses(response.data)
             });
 
-        axios.get('http://localhost:8080/bitcode/courses')
+        axios.get(`http://localhost:8080/bitcode/courses/courselist/${user.id}`)
             .then(response => {
                 setApiData(response.data)
             });
@@ -56,13 +57,19 @@ const Products = (props) => {
                     <h2 class="price">{obj.price}</h2>
                     <Link to="/coursedetail" id={obj.id} onClick={() => localStorage.setItem("CourseId", obj.id)} class="buy">View</Link>
                     {myCourseIds.includes(obj.id) ?
-                        <a href={goToCourseUrl} className='add' onClick={() => localStorage.setItem("CourseId", obj.id)}>Go To Course</a> :
-                        <a onClick={() => {
-                            user = JSON.parse(sessionStorage.getItem("user"));
-                            cartApi.cartId = user.id;
-                            cartApi.courseId = obj.id;
-                            addToCart();
-                        }} class="add">Add to Cart</a>
+                        <>{(obj.orderStatus == "APPROVED")?
+                            <a href={goToCourseUrl} className='add' onClick={() => localStorage.setItem("CourseId", obj.id)}>Go To Course</a> :
+                            <a className='add'>Pending For Approval</a>
+                        }</> :
+                        <>{loggedInFlag?
+                            <a onClick={() => {
+                                user = JSON.parse(sessionStorage.getItem("user"));
+                                cartApi.cartId = user.id;
+                                cartApi.courseId = obj.id;
+                                addToCart();
+                            }} class="add">Add to Cart</a> :
+                            null
+                        }</>
                     }
                 </div>
             </div>
