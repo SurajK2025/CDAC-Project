@@ -23,8 +23,6 @@ public class JwtUtils {
 	private int jwtExpirationMs;
 
 	public String generateJwtToken(Authentication authentication) {
-		log.info("generate jwt token " + authentication);
-		//
 		CustomLoginDetails userPrincipal = (CustomLoginDetails) authentication.getPrincipal();
 		
 		return Jwts.builder()
@@ -46,7 +44,6 @@ public class JwtUtils {
 			.parseClaimsJws(authToken);
 			return true;
 		} catch (Exception e) {
-			log.error("Invalid JWT : " + e.getMessage());
 		}
 		return false;
 	}

@@ -1,14 +1,5 @@
 package com.app.dtos;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
 public class AuthResp {
 	private String message;
 	private String jwt;
@@ -18,6 +9,30 @@ public class AuthResp {
 		super();
 		this.message = message;
 		this.jwt = jwt;
+		this.user = user;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getJwt() {
+		return jwt;
+	}
+
+	public void setJwt(String jwt) {
+		this.jwt = jwt;
+	}
+
+	public Object getUser() {
+		return user;
+	}
+
+	public void setUser(Object user) {
 		this.user = user;
 	}
 }

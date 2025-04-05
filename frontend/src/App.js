@@ -22,7 +22,7 @@ import Footer from './components/Footer';
 
 import MySQLChapter1 from './courseContents/MySQL/TypesOfPrimaryKeys';
 import MySQLChapter2 from './courseContents/MySQL/TypesOfMySQLQueries';
-import MySQLChapter3 from './courseContents/MySQL/DataBaseOperations';
+import MySQLChapter3 from './courseContents/MySQL/DatabaseOperations';
 import MySQLChapter4 from './courseContents/MySQL/ManagingTables';
 import MySQLChapter5 from './courseContents/MySQL/MySQLConstraints';
 

@@ -30,7 +30,6 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		log.info("in once per request filter");
 
 		String header = request.getHeader("Authorization");
 		if (header != null && header.startsWith("Bearer ")) {
@@ -46,9 +45,11 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 							userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
 
 					SecurityContextHolder.getContext().setAuthentication(authentication);
-				} else log.info("user name null or authentication already set , username {}", userName);
+				} else {
+				}
 			}
-		} else log.error("Request header DOES NOT contain a Bearer Token");
+		} else {
+		}
 
 		filterChain.doFilter(request, response);
 
